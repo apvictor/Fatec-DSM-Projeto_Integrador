@@ -1,0 +1,44 @@
+a {
+    text-decoration: none;
+}
+
+.logo {
+    height: 30%;
+}
+
+ion-button {
+    padding: 10px;
+    height: 80px;
+    margin-bottom: -5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+ion-img {
+    margin-right: 10px;
+}
+
+ion-item {
+    margin-top: 10px;
+}
+
+.password {
+    margin-top: 15px;
+    margin-left: 55%;
+    margin-bottom: 20px;
+}
+
+.password a {
+    text-decoration: none;
+    color: #78A55A;
+}
+
+.buttons .entrar {
+    --ion-color-primary: #48742C;
+    font-weight: bold;
+}
+
+.buttons .cadastrar {
+    --ion-color-primary: #48742C;
+    font-weight: bold;
+}

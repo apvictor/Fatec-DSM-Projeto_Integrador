@@ -1,0 +1,54 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <!-- LOGO -->
+  <div class="logo">
+    <ion-img src="../../../assets/logo.png"></ion-img>
+  </div>
+
+  <!-- BOTÕES -->
+  <div>
+    <ion-button color="dark" expand="block" fill="outline">
+      <ion-img src="../../../assets/google.svg"></ion-img>
+      Cadastrar com Google
+    </ion-button>
+    <ion-button color="dark" expand="block" fill="outline">
+      <ion-img src="../../../assets/facebook.svg"></ion-img>
+      Cadastrar com Facebook
+    </ion-button>
+  </div>
+
+  <!-- INPUTS -->
+  <form [formGroup]='register' (submit)="doRegister()">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <!-- ESQUECI SENHA
+    <div class="password">
+      <a href="#">Esqueci minha senha</a>
+    </div> -->
+
+    <!-- BOTÕES -->
+    <div class="buttons">
+      <ion-button type="submit" class="entrar" expand="block" [disabled]='register.invalid'>
+        Cadastrar
+      </ion-button>
+      <ion-button class="cadastrar" expand="block" fill="outline">
+        <a href="/login">Login</a>
+      </ion-button>
+    </div>
+  </form>
+
+
+</ion-content>

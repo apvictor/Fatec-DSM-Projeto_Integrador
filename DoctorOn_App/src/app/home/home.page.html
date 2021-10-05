@@ -1,0 +1,156 @@
+<ion-header>
+  <ion-toolbar>
+
+    <!-- Logo -->
+    <div class="header-img">
+      <img src="../../assets/logo.png" height="100px" alt="">
+    </div>
+
+    <!-- Textos -->
+    <div class="header-titulo">
+      <p>Olá, {{user.name}}</p>
+    </div>
+    <div class="header-descricao">
+      <p>Bem-vindo</p>
+    </div>
+
+    <!-- Menu -->
+    <ion-button class="header-menu" slot="end" color="light" (click)="onLogout()">
+      <ion-icon size="large" color="dark" slot="icon-only" name="log-out"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main">
+    <!-- Textos -->
+    <div class="main-titulo">
+      <p>Como podemos te ajudar hoje?</p>
+    </div>
+    <div class="main-descricao">
+      <p>Encontre o médico mais próximo de você</p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="card">
+            <div class="card-container">
+              <div class="card-img">
+                <img src="../../assets/estetoscopio-90.png" height="100px" alt="">
+              </div>
+              <div>
+                <p class="card-titulo">Clínico Geral</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="card">
+            <div class="card-container">
+              <div class="card-img">
+                <img src="../../assets/baby-100.png" height="100px" alt="">
+              </div>
+              <div>
+                <p class="card-titulo">Pediatria</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="card">
+            <div class="card-container">
+              <div class="card-img">
+                <img src="../../assets/cirurgia-100.png" height="100px" alt="">
+              </div>
+              <div>
+                <p class="card-titulo">Cirurgião</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="card">
+            <div class="card-container">
+              <div class="card-img">
+                <img src="../../assets/embryo-90.png" height="100px" alt="">
+              </div>
+              <div>
+                <p class="card-titulo">Obstetrícia</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="card">
+            <div class="card-container">
+              <div class="card-img">
+                <img src="../../assets/brain-100.png" height="100px" alt="">
+              </div>
+              <div>
+                <p class="card-titulo">Psiquiatria</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="card">
+            <div class="card-container">
+              <div class="card-img">
+                <img src="../../assets/soma-90.png" alt="">
+              </div>
+              <div>
+                <p class="card-all">Todas Especialidades</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <a class="footer-container opacity" href="/register">
+            <div class="footer-img">
+              <img src="../../assets/pointer-30.png" alt="">
+            </div>
+            <div>
+              <p class="footer-titulo">Unidades</p>
+            </div>
+          </a>
+        </ion-col>
+        <ion-col>
+          <a class="footer-container" href="/home">
+            <div class="footer-img">
+              <img src="../../assets/casa-30.png" alt="">
+            </div>
+            <div>
+              <p class="footer-titulo ">Home</p>
+            </div>
+          </a>
+        </ion-col>
+        <ion-col>
+          <a class="footer-container opacity" href="/profile">
+            <div class="footer-img">
+              <img src="../../assets/user-30.png" alt="">
+            </div>
+            <div>
+              <p class="footer-titulo">Perfil</p>
+            </div>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </ion-toolbar>
+</ion-footer>
