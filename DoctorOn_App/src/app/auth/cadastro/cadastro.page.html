@@ -22,22 +22,17 @@
   <!-- INPUTS -->
   <form [formGroup]='register' (submit)="doRegister()">
     <ion-item>
-      <ion-label position="floating">Nome</ion-label>
+      <ion-label position="stacked">Nome</ion-label>
       <ion-input formControlName="name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">E-mail</ion-label>
+      <ion-label position="stacked">E-mail</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Senha</ion-label>
+      <ion-label position="stacked">Senha</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
-
-    <!-- ESQUECI SENHA
-    <div class="password">
-      <a href="#">Esqueci minha senha</a>
-    </div> -->
 
     <!-- BOTÕES -->
     <div class="buttons">
@@ -45,10 +40,8 @@
         Cadastrar
       </ion-button>
       <ion-button class="cadastrar" expand="block" fill="outline">
-        <a href="/login">Login</a>
+        <a href="/login">Entrar</a>
       </ion-button>
     </div>
   </form>
-
-
 </ion-content>

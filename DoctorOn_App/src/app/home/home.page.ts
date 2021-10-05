@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.service';
 export class HomePage implements OnInit {
 
   user: any = [];
+  flag: boolean = false;
 
   constructor(private authService: AuthService,
     private loadingCtrl: LoadingController,
@@ -49,41 +50,46 @@ export class HomePage implements OnInit {
   }
 
   async onLogout() {
-    this.authService.logout().subscribe(
-      async success => {
 
-        const alert = await this.alertCtrl.create({
-          header: 'Sair do Aplicativo',
-          message: 'Deseja realmente sair?',
-          buttons: [{
-            text: 'Sim',
-            handler: () => {
-              this.router.navigateByUrl('/login')
-              localStorage.clear;
-            }
-          },
-          {
-            text: 'Não',
-            handler: () => {
-              this.router.navigateByUrl('/home')
-            }
-          }],
-        });
-
-        await alert.present();
-
-        console.log(success);
+    const alert = await this.alertCtrl.create({
+      header: 'Sair do Aplicativo',
+      message: 'Deseja realmente sair?',
+      buttons: [{
+        text: 'Sim',
+        handler: () => {
+          this.flag = true;
+          if (this.flag == true) {
+            this.authService.logout().subscribe(
+              async success => {
+                localStorage.getItem('token');
+                localStorage.clear();
+                this.router.navigateByUrl('/login')
+                console.log(success);
+              },
+              async error => {
+                const alert = await this.alertCtrl.create({
+                  header: 'Falha ao sair',
+                  message: error.error.message,
+                  buttons: ['OK']
+                });
+                await alert.present();
+                console.log(error.error);
+              }
+            )
+          }
+        }
       },
-      async error => {
-        const alert = await this.alertCtrl.create({
-          header: 'Falha ao sair',
-          message: error.error.message,
-          buttons: ['OK']
-        });
-        await alert.present();
-        console.log(error.error);
-      }
-    )
+      {
+        text: 'Não',
+        handler: () => {
+          this.flag = false
+          this.router.navigateByUrl('/home')
+        }
+      }],
+    });
+
+    await alert.present();
+
   }
 
 }
