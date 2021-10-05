@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "IonicAuth",
+  "appName": "DoctorOn",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
