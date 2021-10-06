@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { Units } from '../units/units.model';
 
@@ -15,14 +14,13 @@ import { Units } from '../units/units.model';
 })
 export class UnitsPage implements OnInit {
 
-  units$: Observable<Units[]>
-
   latUser;
   longUser;
-
-  unit: any = [];
   km;
-  result = [];
+
+  unidade: any[];
+  aux_unidade: any = [];
+  item: any = [];
 
   constructor(
     private geolacation: Geolocation,
@@ -35,71 +33,64 @@ export class UnitsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    // const loading = await this.loadingCtrl.create({ message: 'Carregando...' });
-    // loading.present();
-    // loading.dismiss();
     this.localizaUser();
-    this.localizaUnits();
-
   }
 
-  localizaUser() {
+  async localizaUser() {
+    const loading = await this.loadingCtrl.create({ message: 'Buscando Unidades...' });
+    loading.present();
     this.geolacation.getCurrentPosition({
       timeout: 10000,
       enableHighAccuracy: true
     }).then((res) => {
       this.latUser = res.coords.latitude;
       this.longUser = res.coords.latitude;
-      console.log();
+      this.localizaUnits();
+      loading.dismiss();
     }).catch((e) => {
+      this.localizaUnits();
       console.log(e);
+      loading.dismiss();
     })
   }
 
 
   async localizaUnits() {
-    this.unit = this.authService.units().pipe(
-      map((units) => {
-        // for (let i = 0; i < units.length; i++) {
-        //   this.unit.push(units[i]);
+    this.authService.units().subscribe((units) => {
+      this.aux_unidade = units;
 
-        //    this.km = this.getDistanceFromLatLonInKm(units[i].latitude, units[i].longitude, this.latUser, this.longUser);
-        //   // console.log(units[i]);
+      // Incluir resultado do km no objeto
+      for (let i = 0; i < this.aux_unidade.length; i++) {
+        this.km = this.getDistanceFromLatLonInKm(this.aux_unidade[i].latitude, this.aux_unidade[i].longitude, this.latUser, this.longUser);
+        this.aux_unidade[i].km = parseFloat(this.km);
+      }
 
-        // }
+      // Buscar pelo menor km [Pendente]
+      this.aux_unidade = this.aux_unidade.sort(function (a, b) {
+        if (a.km < b.km) { return -1; }
+        if (a.km > b.km) { return 1; }
+        return 0;
+      });
 
-        // this.unit = units;
-
-
-        console.log(this.unit);
-
-      })
-    )
-
-
+      // Retornar para visualização na tela
+      this.unidade = this.aux_unidade;
+    })
   }
-
-
 
   // Calcular lat e long e retornar em Km
   getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    var deg2rad = function (deg) { return deg * (Math.PI / 180); }
     var R = 6371; // Radius of the earth in km
-    var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
-    var dLon = this.deg2rad(lon2 - lon1);
+    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
     var a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2)
       ;
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
     return d.toFixed(2);
   }
-
-  deg2rad(deg) {
-    return deg * (Math.PI / 180)
-  }
-
 
 }

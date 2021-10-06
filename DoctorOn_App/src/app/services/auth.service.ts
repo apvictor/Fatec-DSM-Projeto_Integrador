@@ -31,10 +31,12 @@ export class AuthService {
         return this.http.get(`${this.url}/profile`, { headers });
     }
 
-    units(): Observable<Units[]> {
+    units() {
         const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
-        return this.http.get<Units[]>(`${this.url}/units`, { headers });
+        return this.http.get(`${this.url}/units`, { headers });
     }
+
+
 
 }
 

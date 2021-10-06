@@ -1,46 +1,31 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Unidades</ion-title>
+
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
+
+    <ion-buttons slot="end">
+      <!-- <ion-button > -->
+      <ion-icon (click)="localizaUser()" size="large" slot="start" name="refresh"></ion-icon>
+      <!-- </ion-button> -->
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div>
-    <p> {{result}} Km</p>
-  </div>
-
-  <!-- <ion-list>
-    <ion-card *ngFor="let unit of units$|async">
-      <p>{{unit.name}}</p>
-      <p>{{unit.street}}, {{unit.number}} - {{unit.district}}</p>
-      <p>{{unit.cep}}</p>
+  <ion-list>
+    <ion-card *ngFor="let unit of unidade">
+      <img src="../../assets/hospital.jpg" />
+      <ion-card-header>
+        <ion-card-title>{{unit.name}}</ion-card-title>
+        <ion-card-subtitle>{{unit.street}}, {{unit.number}} - {{unit.district}} <br> {{unit.cep}} <br><br>{{unit.km}} Km
+        </ion-card-subtitle>
+      </ion-card-header>
     </ion-card>
-  </ion-list> -->
-
-
-  <!-- <ion-list>
-    <ion-card *ngFor="let unit of unit">
-      <p>{{unit.name}}</p>
-      <p>{{unit.street}}, {{unit.number}} - {{unit.district}}</p>
-      <p>{{unit.cep}}</p>
-    </ion-card>
-  </ion-list>  -->
+  </ion-list>
 
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-button (click)="localizaUnits()" expand="block">
-      Atualizar Localização Unidades
-    </ion-button>
-  </ion-toolbar>
-  <ion-toolbar>
-    <ion-button (click)="localizaUser()" expand="block">
-      Atualizar Localização Usuário
-    </ion-button>
-  </ion-toolbar>
-</ion-footer>

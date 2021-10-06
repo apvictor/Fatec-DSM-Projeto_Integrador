@@ -4,6 +4,7 @@ export interface Units {
     street: string;
     number: string;
     district: string;
+    km: number;
     latitude: string;
     longitude: string;
 }
