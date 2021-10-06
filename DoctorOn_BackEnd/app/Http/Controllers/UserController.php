@@ -27,4 +27,32 @@ class UserController extends Controller
 
         return response()->json(['user' => $user]);
     }
+
+    public function update(Request $request, User $user)
+    {
+        //Validate data
+        $data = $request->only('name', 'email');
+        $validator = Validator::make($data, [
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+        ]);
+
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 200);
+        }
+
+        //Request is valid, update product
+        $user = $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        //Product updated, return success response
+        return response()->json([
+            'success' => true,
+            'message' => 'Usuário atualizado com sucesso',
+            'data' => $user
+        ], Response::HTTP_OK);
+    }
 }
