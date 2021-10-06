@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Units } from '../units/units.model';
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +29,11 @@ export class AuthService {
     profile(): Observable<any> {
         const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
         return this.http.get(`${this.url}/profile`, { headers });
+    }
+
+    units(): Observable<Units[]> {
+        const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
+        return this.http.get<Units[]>(`${this.url}/units`, { headers });
     }
 
 }

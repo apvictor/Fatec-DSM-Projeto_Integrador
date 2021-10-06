@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { async } from '@angular/core/testing';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',

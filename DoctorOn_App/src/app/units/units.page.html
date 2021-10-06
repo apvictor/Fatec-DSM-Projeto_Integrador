@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>units</ion-title>
+    <ion-title>Unidades</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
@@ -9,4 +9,38 @@
 
 <ion-content>
 
+  <div>
+    <p> {{result}} Km</p>
+  </div>
+
+  <!-- <ion-list>
+    <ion-card *ngFor="let unit of units$|async">
+      <p>{{unit.name}}</p>
+      <p>{{unit.street}}, {{unit.number}} - {{unit.district}}</p>
+      <p>{{unit.cep}}</p>
+    </ion-card>
+  </ion-list> -->
+
+
+  <!-- <ion-list>
+    <ion-card *ngFor="let unit of unit">
+      <p>{{unit.name}}</p>
+      <p>{{unit.street}}, {{unit.number}} - {{unit.district}}</p>
+      <p>{{unit.cep}}</p>
+    </ion-card>
+  </ion-list>  -->
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="localizaUnits()" expand="block">
+      Atualizar Localização Unidades
+    </ion-button>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-button (click)="localizaUser()" expand="block">
+      Atualizar Localização Usuário
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
