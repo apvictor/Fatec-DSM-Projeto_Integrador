@@ -21,12 +21,5 @@ class Cors
         $response->header('Access-Control-Allow-Methods', "PUT, POST, DELETE, GET, OPTIONS");
         $response->header('Access-Control-Allow-Headers', "Accept, Authorization, Content-Type");
         return $response;
-
-        return $next($request)
-            //Acrescente as 3 linhas abaixo
-            ->header('Access-Control-Allow-Origin', "*")
-            ->headers('Access-Control-Allow-Origin', 'http://localhost:8100')
-            ->header('Access-Control-Allow-Methods', "PUT, POST, DELETE, GET, OPTIONS")
-            ->header('Access-Control-Allow-Headers', "Accept, Authorization, Content-Type");
     }
 }

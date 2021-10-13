@@ -34,7 +34,7 @@ class UserController extends Controller
         $data = $request->only('name', 'email');
         $validator = Validator::make($data, [
             'name' => 'required|string',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
         ]);
 
         //Send failed response if request is not valid
