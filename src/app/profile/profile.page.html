@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Meu Perfil</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <div style="margin-left: 30px;"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="img-user">
+    <img src="../../assets/user.jpg" />
+  </ion-card>
+
+  <div class="edit-user">
+    <h2>{{user.name}}</h2>
+    <ion-button (click)="chooseEdit()" slot="end" color="dark">
+      <ion-icon slot="icon-only" [name]="lock"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="forms">
+    <form [formGroup]='form' (submit)='update()'>
+      <ion-item [disabled]="choose">
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input value="{{user.name}}" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item [disabled]="choose">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input value="{{user.email}}" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-button type="submit" color="dark" expand="block" [disabled]="choose">
+        Atualizar Usuário
+      </ion-button>
+    </form>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <a class="footer-container opacity" href="/units">
+            <div class="footer-img">
+              <img src="../../assets/pointer-30.png" alt="">
+            </div>
+            <div>
+              <p class="footer-titulo">Unidades</p>
+            </div>
+          </a>
+        </ion-col>
+        <ion-col>
+          <a class="footer-container opacity" href="/home">
+            <div class="footer-img">
+              <img src="../../assets/casa-30.png" alt="">
+            </div>
+            <div>
+              <p class="footer-titulo ">Home</p>
+            </div>
+          </a>
+        </ion-col>
+        <ion-col>
+          <a class="footer-container" href="/profile">
+            <div class="footer-img">
+              <img src="../../assets/user-30.png" alt="">
+            </div>
+            <div>
+              <p class="footer-titulo">Perfil</p>
+            </div>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Especialista</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <div style="margin-left: 35px;"></div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let doctor of doctors">
+      <ion-card-header>
+        <ion-card-title>{{doctor.unit}}</ion-card-title>
+        <ion-card-subtitle>
+          {{doctor.street}}, {{doctor.number}} - {{doctor.district}} <br> {{doctor.cep}}
+          <br><br>{{doctor.km}} Km
+        </ion-card-subtitle>
+        <h3>{{doctor.name}}</h3>
+        <h5>{{doctor.specialty}}</h5>
+      </ion-card-header>
+
+    </ion-card>
+  </ion-list>
+</ion-content>
