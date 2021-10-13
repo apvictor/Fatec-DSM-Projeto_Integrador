@@ -12,18 +12,34 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-card *ngFor="let doctor of doctors">
-      <ion-card-header>
-        <ion-card-title>{{doctor.unit}}</ion-card-title>
-        <ion-card-subtitle>
-          {{doctor.street}}, {{doctor.number}} - {{doctor.district}} <br> {{doctor.cep}}
-          <br><br>{{doctor.km}} Km
-        </ion-card-subtitle>
-        <h3>{{doctor.name}}</h3>
-        <h5>{{doctor.specialty}}</h5>
-      </ion-card-header>
 
+  <div style="font-family: Roboto; text-align: center; margin: 10px;">
+    <h2>Profissionais Disponíveis</h2>
+  </div>
+
+  <ion-list>
+    <ion-card class="card" *ngFor="let doctor of doctors">
+      <div class="img">
+        <img src="../../assets/user.jpg" height="80px" alt="">
+        <div class="km">
+          <p>{{doctor.km}} Km</p>
+        </div>
+      </div>
+      <div class="text">
+        <h2>Dr. {{doctor.name}}</h2>
+        <div class="specialty">
+          <p>{{doctor.specialty}} - CRM: {{doctor.crm}}</p>
+        </div>
+        <div class="units">
+          <p>{{doctor.unit}}</p>
+        </div>
+        <div class="cep">
+          <p>{{doctor.cep}}</p>
+        </div>
+        <div class="address">
+          <p>{{doctor.street}}, {{doctor.number}} - {{doctor.district}}</p>
+        </div>
+      </div>
     </ion-card>
   </ion-list>
 </ion-content>
