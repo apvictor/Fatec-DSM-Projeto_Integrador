@@ -7,10 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Facades\JWTFactory;
 
 class UserController extends Controller
 {
@@ -54,5 +51,24 @@ class UserController extends Controller
             'message' => 'Usuário atualizado com sucesso',
             'data' => $user
         ], Response::HTTP_OK);
+    }
+
+    public function logout(Request $request)
+    {
+
+        //Request is validated, do logout        
+        try {
+            JWTAuth::invalidate($request->token);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'O usuário foi desconectado'
+            ]);
+        } catch (JWTException $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Desculpe, o usuário não pode ser desconectado'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -5,14 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use App\User;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Facades\JWTFactory;
 
 class LoginController extends Controller
 {
@@ -86,31 +81,4 @@ class LoginController extends Controller
         ]);
     }
 
-    public function logout(Request $request)
-    {
-        // //valid credential
-        // $validator = Validator::make($request->only('token'), [
-        //     'token' => 'required'
-        // ]);
-
-        // //Send failed response if request is not valid
-        // if ($validator->fails()) {
-        //     return response()->json(['error' => $validator->messages()], 200);
-        // }
-
-        //Request is validated, do logout        
-        try {
-            JWTAuth::invalidate($request->token);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'O usuário foi desconectado'
-            ]);
-        } catch (JWTException $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Desculpe, o usuário não pode ser desconectado'
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
 }
