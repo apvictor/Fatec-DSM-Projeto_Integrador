@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
 
   constructor(
     private authService: AuthService,
@@ -19,15 +19,16 @@ export class LoginPage {
     private router: Router,
   ) { }
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   login = new FormGroup({
-    email: new FormControl('', Validators.compose([
-      Validators.required,
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+    password: new FormControl('', [Validators.required,]),
   });
 
 
+  ngOnInit() {
+    localStorage.getItem('token');
+    localStorage.clear();
+  }
 
   async doLogin() {
     const loading = await this.loadingCtrl.create({ message: 'Entrando ...' });

@@ -5,11 +5,11 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.page.html',
+  styleUrls: ['./forgot-password.page.scss'],
 })
-export class RegisterPage {
+export class ForgotPasswordPage implements OnInit {
 
   constructor(
     private authService: AuthService,
@@ -19,37 +19,47 @@ export class RegisterPage {
     private router: Router,
   ) { }
 
-
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  register = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+  form = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-    password: new FormControl('', [Validators.required]),
   });
 
-  async doRegister() {
-    const loading = await this.loadingCtrl.create({ message: 'Registrando...' });
+
+  ngOnInit() {
+    localStorage.getItem('token');
+    localStorage.clear();
+  }
+
+  async forgotPassword() {
+    const loading = await this.loadingCtrl.create({ message: 'Enviando...' });
     await loading.present();
 
-    this.authService.register(this.register.value).subscribe(
+    this.authService.forgotPassword(this.form.value).subscribe(
       async success => {
-        const toast = await this.toastCtrl.create({ message: 'Usuário criado', duration: 2000, color: 'dark' });
-        await toast.present();
         loading.dismiss();
-        this.router.navigateByUrl('/login');
+        const alert = await this.alertCtrl.create({
+          header: 'Senha redefinida',
+          message: 'Verifique a caixa de entrada do seu email',
+          buttons: [{
+            text: 'OK',
+            handler: () => { this.router.navigateByUrl('/login'); }
+          }]
+        });
+        await alert.present();
         console.log(success);
       },
       async error => {
         const alert = await this.alertCtrl.create({
-          header: 'Falha ao cadastrar',
-          message: error.error.message,
+          header: 'Falha ao enviar email',
+          message: error.error.msg,
           buttons: ['OK']
         });
         loading.dismiss();
         await alert.present();
         console.log(error.error);
       }
-    );
+    )
   }
+
+
 
 }

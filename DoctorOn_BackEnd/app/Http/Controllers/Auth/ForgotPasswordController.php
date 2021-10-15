@@ -5,21 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset emails and
-    | includes a trait which assists in sending these notifications from
-    | your application to your users. Feel free to explore this trait.
-    |
-    */
 
     use SendsPasswordResetEmails;
 
@@ -33,30 +23,26 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    public function forgot()
+    public function forgotReset()
     {
+        $password = rand(100000, 999999);
+
         $credentials = request()->validate(['email' => 'required|email']);
 
-        Password::sendResetLink($credentials);
-
-        return response()->json(["msg" => 'Link de redefinição de senha enviado em seu e-mail.']);
-    }
-
-    public function reset()
-    {
-        $credentials = request()->validate([
-            'email' => 'required|email',
-            'password' => 'required|string'
-        ]);
-
         // SELECT USER and UPDATE PASSWORD USER
-        $user = User::where('email', $credentials['email'])
-            ->update(['password' => Hash::make($credentials['password'])]);
+        $user = User::where('email', $credentials['email'])->first();
 
-        if ($user == 0) {
-            return response()->json(["msg" => "Usuário fora da base de dados"]);
+        if ($user == null) {
+            return response()->json(["msg" => 'E-mail inexistente na base de dados'], 400);
         }
 
-        return response()->json(["msg" => "A senha foi alterada com sucesso"]);
+        $user->update(['password' => Hash::make($password)]);
+
+        Mail::send('emails.mail', ['user' => $user, 'password' => $password], function ($m) use ($user) {
+            $m->from('doctoron21@gmail.com', 'DoctorOn');
+            $m->to($user->email, $user->name)->subject('Nova Senha de Acesso');
+        });
+
+        return response()->json(["msg" => 'Nova senha enviada ao ' . $user->email]);
     }
 }

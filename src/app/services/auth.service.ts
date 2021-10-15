@@ -51,6 +51,9 @@ export class AuthService {
     return this.http.get(`${this.url}/doctors/?specialty=` + specialty, { headers });
   }
 
+  forgotPassword(email: string) {
+    return this.http.post(`${this.url}/password/reset/`, email);
+  }
 
 
 

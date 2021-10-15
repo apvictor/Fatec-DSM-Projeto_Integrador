@@ -12,9 +12,7 @@ use App\Http\Controllers\UserController;
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'authenticate']);
 
-Route::post('password/email', [ForgotPasswordController::class, 'forgot']);
-Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
-
+Route::post('password/reset', [ForgotPasswordController::class, 'forgotReset']);
 
 
 Route::group(['middleware' => ['jwt.verify']], function () {
