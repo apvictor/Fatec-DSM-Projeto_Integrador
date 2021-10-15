@@ -4,8 +4,9 @@
 <ion-content>
   <!-- LOGO -->
   <div class="logo">
-    <ion-img src="../../../assets/logo.png"></ion-img>
+    <ion-img src="https://ik.imagekit.io/mnbr5uwksus/DoctorOn/DoctorOn.png?updatedAt=1634255509856"></ion-img>
   </div>
+  <h1 style="text-align: center;">Entrar</h1>
 
   <!-- INPUTS -->
   <form [formGroup]='login' (submit)="doLogin()">
@@ -19,8 +20,8 @@
     </ion-item>
 
     <!-- ESQUECI SENHA -->
-    <div class="password">
-      <a href="/forgot-password">Esqueci minha senha</a>
+    <div class="password" [routerLink]="['/forgot-password']">
+      <span>Esqueci minha senha</span>
     </div>
 
     <!-- BOTÕES -->
@@ -28,8 +29,8 @@
       <ion-button type="submit" class="entrar" expand="block" [disabled]='login.invalid'>
         Entrar
       </ion-button>
-      <ion-button class="cadastrar" expand="block" fill="outline">
-        <a href="/register">Cadastrar</a>
+      <ion-button class="cadastrar" expand="block" fill="outline" [routerLink]="['/register']">
+        Cadastrar
       </ion-button>
     </div>
   </form>

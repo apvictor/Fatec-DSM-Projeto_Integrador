@@ -3,7 +3,7 @@
 
     <!-- Logo -->
     <div class="header-img">
-      <img src="../../assets/logo.png" height="100px" alt="">
+      <img src="https://ik.imagekit.io/mnbr5uwksus/DoctorOn/DoctorOn.png?updatedAt=1634255509856" height="100px">
     </div>
 
     <!-- Textos -->
@@ -38,7 +38,7 @@
       <ion-row>
 
         <ion-col *ngFor="let specialties of specialty;" (click)="openPage(specialties.specialty_used)">
-          <div class="card" >
+          <div class="card">
             <div class="card-container">
               <div class="card-img">
                 <img src="{{specialties.img}}" height="100px">
@@ -61,38 +61,36 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <a class="footer-container opacity" href="/units">
+          <span class="footer-container opacity" [routerLink]="['/units']">
             <div class="footer-img">
-              <img src="../../assets/pointer-30.png" alt="">
+              <img src="../../assets/pointer-30.png">
             </div>
             <div>
               <p class="footer-titulo">Unidades</p>
             </div>
-          </a>
+          </span>
         </ion-col>
         <ion-col>
-          <a class="footer-container" href="/home">
+          <span class="footer-container" [routerLink]="['/home']">
             <div class="footer-img">
-              <img src="../../assets/casa-30.png" alt="">
+              <img src="../../assets/casa-30.png">
             </div>
             <div>
               <p class="footer-titulo ">Home</p>
             </div>
-          </a>
+          </span>
         </ion-col>
         <ion-col>
-          <a class="footer-container opacity" href="/profile">
+          <span class="footer-container opacity" [routerLink]="['/profile']">
             <div class="footer-img">
-              <img src="../../assets/user-30.png" alt="">
+              <img src="../../assets/user-30.png">
             </div>
             <div>
               <p class="footer-titulo">Perfil</p>
             </div>
-          </a>
+          </span>
         </ion-col>
       </ion-row>
     </ion-grid>
-
-
   </ion-toolbar>
 </ion-footer>

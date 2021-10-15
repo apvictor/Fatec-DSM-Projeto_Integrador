@@ -9,10 +9,8 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule) },
   { path: 'units', loadChildren: () => import('./units/units.module').then(m => m.UnitsPageModule) },
   { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule) },
-  { path: 'doctors', loadChildren: () => import('./doctors/doctors.module').then(m => m.DoctorsPageModule) },  {
-    path: 'forgot-password',
-    loadChildren: () => import('./auth/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
-  },
+  { path: 'doctors', loadChildren: () => import('./doctors/doctors.module').then(m => m.DoctorsPageModule) },
+  { path: 'forgot-password', loadChildren: () => import('./auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule) },
 
 ];
 
