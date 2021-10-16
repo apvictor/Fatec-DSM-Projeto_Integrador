@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Especialista</ion-title>
+    <ion-title>{{specialty}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
@@ -10,12 +10,19 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 
-  <div style="font-family: Roboto; text-align: center; margin: 10px;">
-    <h2>Profissionais Disponíveis</h2>
+
+  <!-- Card informativo -->
+  <div class="card-info">
+    <div class="card-info-icon">
+      <img src="../../assets/doctors.png">
+    </div>
+    <div class="card-info-text">
+      <p>Encontramos {{this.count}} especialistas disponíveis em unidades próximas à você.</p>
+    </div>
   </div>
+
 
   <ion-list>
     <ion-card class="card" *ngFor="let doctor of doctors">
@@ -26,7 +33,10 @@
         </div>
       </div>
       <div class="text">
-        <h2>Dr. {{doctor.name}}</h2>
+        <div class="online">
+          <h2>Dr. {{doctor.name}}</h2>
+          <span class="icon-online"></span>
+        </div>
         <div class="specialty">
           <p>{{doctor.specialty}} - CRM: {{doctor.crm}}</p>
         </div>

@@ -18,6 +18,9 @@ export class DoctorsPage implements OnInit {
   longUser;
   km;
 
+  specialty;
+  count;
+
   unidade: any[];
   aux_unidade: any = [];
 
@@ -65,10 +68,18 @@ export class DoctorsPage implements OnInit {
     this.authService.doctors(this.dataValue).subscribe((doctor) => {
       this.aux_unidade = doctor['doctor'];
 
+      this.count = this.aux_unidade.length;
+
       // Incluir resultado do km no objeto
       for (let i = 0; i < this.aux_unidade.length; i++) {
         this.km = this.getDistanceFromLatLonInKm(this.aux_unidade[i].latitude, this.aux_unidade[i].longitude, this.latUser, this.longUser);
         this.aux_unidade[i].km = parseFloat(this.km);
+
+        if (this.dataValue != 'all_specialties') {
+          this.specialty = this.aux_unidade[i].specialty;
+        } else {
+          this.specialty = 'Todas Especialidades';
+        }
       }
 
       // Buscar pelo menor km

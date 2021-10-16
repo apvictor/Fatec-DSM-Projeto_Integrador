@@ -60,7 +60,10 @@ export class UnitsPage implements OnInit {
       // Incluir resultado do km no objeto
       for (let i = 0; i < this.aux_unidade.length; i++) {
         this.km = this.getDistanceFromLatLonInKm(this.aux_unidade[i].latitude, this.aux_unidade[i].longitude, this.latUser, this.longUser);
+
+
         this.aux_unidade[i].km = parseFloat(this.km);
+        // this.aux_unidade[i].km = parseFloat(this.km.substr(0, 1));
       }
 
       // Buscar pelo menor km
@@ -69,6 +72,8 @@ export class UnitsPage implements OnInit {
         if (a.km > b.km) { return 1; }
         return 0;
       });
+
+      console.log(this.aux_unidade);
 
       // Retornar para visualização na tela
       this.unidade = this.aux_unidade;

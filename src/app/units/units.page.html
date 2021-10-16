@@ -17,15 +17,29 @@
 
 <ion-content>
 
+  <!-- Card informativo -->
+  <div class="card-info">
+    <div class="card-info-icon">
+      <img src="../../assets/units.png">
+    </div>
+    <div class="card-info-text">
+      <p>
+        Veja informações sobre as unidades e as mais próximas de você.
+      </p>
+    </div>
+  </div>
+
   <ion-list>
-    <ion-card *ngFor="let unit of unidade">
-      <img src="../../assets/hospital.jpg" />
-      <ion-card-header>
-        <ion-card-title>{{unit.name}}</ion-card-title>
-        <ion-card-subtitle>{{unit.street}}, {{unit.number}} - {{unit.district}} <br> {{unit.cep}} <br><br>{{unit.km}} Km
-        </ion-card-subtitle>
-      </ion-card-header>
-    </ion-card>
+    <ion-item *ngFor="let unit of unidade">
+      <ion-label>
+        <h2><b>{{unit.unit}}</b></h2>
+        <h3>{{unit.street}}, {{unit.number}} - {{unit.district}} <br>{{unit.cep}}</h3>
+        <p style="color: #48742C; margin-top: 5px;"><b>
+            Funciona das {{unit.start_time}} às {{unit.end_time}}
+          </b></p>
+        <ion-badge color="dark">{{unit.km}} Km</ion-badge>
+      </ion-label>
+    </ion-item>
   </ion-list>
 
 </ion-content>

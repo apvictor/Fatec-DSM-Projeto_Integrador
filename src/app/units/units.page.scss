@@ -56,3 +56,21 @@ ion-footer ion-toolbar {
 .opacity {
   opacity: 0.8;
 }
+
+.card-info {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background: #EEEEEE;
+  border-radius: 5px;
+  margin: 20px 10px 0 10px;
+}
+
+.card-info-icon {
+  width: 60px;
+  text-align: center;
+}
+
+.card-info-text {
+  width: 300px;
+}
