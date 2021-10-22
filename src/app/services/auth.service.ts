@@ -52,7 +52,7 @@ export class AuthService {
   }
 
   forgotPassword(email: string) {
-    return this.http.post(`${this.url}/password/reset/`, email);
+    return this.http.post(`${this.url}/reset/`, email);
   }
 
 

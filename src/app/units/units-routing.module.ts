@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: UnitsPage
+  },  {
+    path: 'details-units',
+    loadChildren: () => import('./details-units/details-units.module').then( m => m.DetailsUnitsPageModule)
   }
+
 ];
 
 @NgModule({

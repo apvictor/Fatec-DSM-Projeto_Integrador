@@ -27,14 +27,22 @@
   <ion-list>
     <ion-card class="card" *ngFor="let doctor of doctors">
       <div class="img">
-        <img src="../../assets/user.jpg" height="80px" alt="">
+        <div *ngIf="!doctor.img_doctor">
+          <img src="../../assets/user.jpg" height="80px" alt="">
+        </div>
+        <img src="{{doctor.img_doctor}}" height="80px" alt="">
         <div class="km">
-          <p>{{doctor.km}} Km</p>
+          <ion-badge color="dark">{{doctor.km}} Km</ion-badge>
         </div>
       </div>
       <div class="text">
         <div class="online">
-          <h2>Dr. {{doctor.name}}</h2>
+          <div *ngIf="doctor.sex == 'M'">
+            <h2>Dr. {{doctor.name}}</h2>
+          </div>
+          <div *ngIf="doctor.sex == 'F'">
+            <h2>Dra. {{doctor.name}}</h2>
+          </div>
           <span class="icon-online"></span>
         </div>
         <div class="specialty">
