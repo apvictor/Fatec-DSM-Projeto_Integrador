@@ -55,7 +55,7 @@ $ cd Fatec-DSM-Projeto_Integrador/DoctorOn_BackEnd
 # Instalar dependências
 $ composer install
 
-# Soliciar .env para adminitrador do Projeto e Executar migrações
+# Soliciar .env para administrador do Projeto e Executar migrações
 $ php artisan migrate
 
 # Run Seeds
