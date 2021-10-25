@@ -4,7 +4,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\UnitsController;
 use App\Http\Controllers\UserController;
@@ -12,7 +11,7 @@ use App\Http\Controllers\UserController;
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'authenticate']);
 
-Route::post('password/reset', [ForgotPasswordController::class, 'forgotReset']);
+Route::post('reset', [ForgotPasswordController::class, 'forgotReset']);
 
 
 Route::group(['middleware' => ['jwt.verify']], function () {
@@ -22,8 +21,10 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('profile/update/{user}',  [UserController::class, 'update']);
 
 
-    // Unitis
+    // Units
     Route::get('units', [UnitsController::class, 'index']);
+
+    Route::get('units/{id}', [UnitsController::class, 'show']);
 
 
     // Doctor
@@ -32,12 +33,4 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     // specialties
     Route::get('specialties', [SpecialtyController::class, 'index']);
-
-
-    // Produts
-    Route::get('products', [ProductController::class, 'index']);
-    Route::get('products/show/{id}', [ProductController::class, 'show']);
-    Route::post('products/store', [ProductController::class, 'store']);
-    Route::post('products/update/{product}',  [ProductController::class, 'update']);
-    Route::delete('products/delete/{product}',  [ProductController::class, 'destroy']);
 });
