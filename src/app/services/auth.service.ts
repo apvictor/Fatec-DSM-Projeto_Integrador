@@ -41,6 +41,11 @@ export class AuthService {
     return this.http.get(`${this.url}/units`, { headers });
   }
 
+  unitsDetails(id: number) {
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
+    return this.http.get(`${this.url}/units/` + id, { headers });
+  }
+
   specialties(): Observable<any> {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
     return this.http.get(`${this.url}/specialties`, { headers });

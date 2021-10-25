@@ -1,7 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Detalhes Unidade</ion-title>
-
+    <!-- <ion-title>{{unidade.unit}}</ion-title> -->
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -9,10 +8,29 @@
     <ion-buttons slot="end">
       <div style="margin-left: 30px;"></div>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card>
+    <!-- <ion-button (click)="exibirMapa()" expand="block" fill="clear" shape="round"> -->
+      <!-- Click me -->
+    <!-- </ion-button> -->
+    <div id="map">
+      <!-- <ion-button (click)="onClick($event)" expand="block" fill="clear" shape="round"> -->
+        <!-- Click me -->
+      <!-- </ion-button> -->
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>Destination</ion-card-subtitle>
+      <ion-card-title>Madison, WI</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin
+      Territory in 1836.
+    </ion-card-content>
+  </ion-card>
+
 
 </ion-content>

@@ -7,8 +7,9 @@ const routes: Routes = [
   {
     path: '',
     component: UnitsPage
-  },  {
-    path: 'details-units',
+  },
+  {
+    path: 'details-units/:id',
     loadChildren: () => import('./details-units/details-units.module').then( m => m.DetailsUnitsPageModule)
   }
 

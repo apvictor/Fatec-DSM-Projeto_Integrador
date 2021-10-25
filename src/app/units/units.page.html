@@ -30,26 +30,34 @@
   </div>
 
   <ion-list>
-    <ion-item *ngFor="let unit of unidade" routerLink="details-units">
-      <ion-label>
-        <h2><b>{{unit.unit}}</b></h2>
-        <h3>{{unit.street}}, {{unit.number}} - {{unit.district}} <br>{{unit.cep}}</h3>
+    <!-- <ion-item > -->
+    <div class="item" *ngFor="let unit of unidade" routerLink="details-units/{{unit.id}}">
+      <div>
+        <ion-label>
+          <h2><b>{{unit.unit}}</b></h2>
+          <h3>{{unit.street}}, {{unit.number}} - {{unit.district}} <br>{{unit.cep}}</h3>
 
-        <div *ngIf="unit.always_available == 1">
-          <p style="color: #48742C; margin-top: 5px;">
-            <b>Aberto 24 horas</b>
-          </p>
-        </div>
+          <div *ngIf="unit.always_available == 1">
+            <p style="color: #48742C; margin-top: 5px;">
+              <b>Aberto 24 horas</b>
+            </p>
+          </div>
 
-        <div *ngIf="unit.always_available == 0">
-          <p style="color: #48742C; margin-top: 5px;">
-            <b>Funciona das {{unit.start_time}} às {{unit.end_time}}</b>
-          </p>
-        </div>
+          <div *ngIf="unit.always_available == 0">
+            <p style="color: #48742C; margin-top: 5px;">
+              <b>Funciona das {{unit.start_time}} às {{unit.end_time}}</b>
+            </p>
+          </div>
 
-        <ion-badge color="dark">{{unit.km}} Km</ion-badge>
-      </ion-label>
-    </ion-item>
+          <ion-badge color="dark">{{unit.km}} Km</ion-badge>
+        </ion-label>
+      </div>
+      <div>
+        <ion-icon size="large" name="chevron-forward-outline"></ion-icon>
+      </div>
+    </div>
+
+    <!-- </ion-item> -->
   </ion-list>
 
 </ion-content>
