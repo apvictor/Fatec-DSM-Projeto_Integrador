@@ -21,6 +21,17 @@
         <br>
         <b>CEP: {{unidade.cep}}</b>
       </ion-card-subtitle>
+      <div *ngIf="unidade.always_available == 1">
+        <p style="color: #48742C; margin-top: 5px;">
+          <b>Aberto 24 horas</b>
+        </p>
+      </div>
+
+      <div *ngIf="unidade.always_available == 0">
+        <p style="color: #48742C; margin-top: 5px;">
+          <b>Funciona das {{unidade.start_time}} às {{unidade.end_time}}</b>
+        </p>
+      </div>
     </ion-card-header>
     <ion-card-content>
       <ion-button expand="block">
