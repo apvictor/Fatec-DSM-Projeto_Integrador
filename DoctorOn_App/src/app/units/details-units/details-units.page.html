@@ -34,10 +34,16 @@
       </div>
     </ion-card-header>
     <ion-card-content>
-      <ion-button expand="block">
-        <ion-icon style="margin-right: 10px;" slot="icon-only" name="call"></ion-icon>
-        Ligar agora
-      </ion-button>
+      <div *ngIf="unidade.phone == ''">
+        
+      </div>
+      <a style="text-align: center; text-decoration: none;" href="tel:{{unidade.phone}}">
+        <ion-button expand="block">
+          <ion-icon style="margin-right: 10px;" slot="icon-only" name="call"></ion-icon>
+          Ligar agora
+        </ion-button>
+      </a>
+
     </ion-card-content>
   </ion-card>
 
