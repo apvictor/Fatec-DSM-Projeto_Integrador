@@ -12,13 +12,13 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 })
 export class UnitsPage implements OnInit {
 
-  latUser;
-  longUser;
-  km;
-
   unidade: any[];
   aux_unidade: any = [];
 
+  minhaPosicao: google.maps.LatLng;
+  unitPosicao: google.maps.LatLng;
+
+  km;
   constructor(
     private geolacation: Geolocation,
     private authService: AuthService,
@@ -40,9 +40,9 @@ export class UnitsPage implements OnInit {
       timeout: 10000,
       enableHighAccuracy: true
     }).then((res) => {
+      this.minhaPosicao = new google.maps.LatLng(res.coords.latitude, res.coords.longitude);
       console.log(res.coords.latitude, res.coords.longitude);
-      this.latUser = res.coords.latitude.toFixed(2);
-      this.longUser = res.coords.latitude.toFixed(2);
+
       this.localizaUnits();
       loading.dismiss();
     }).catch((e) => {
@@ -57,13 +57,12 @@ export class UnitsPage implements OnInit {
     this.authService.units().subscribe((units) => {
       this.aux_unidade = units;
 
-      // Incluir resultado do km no objeto
+      // Incluir resultado do km no array
       for (let i = 0; i < this.aux_unidade.length; i++) {
-        this.km = this.getDistanceFromLatLonInKm(this.aux_unidade[i].latitude, this.aux_unidade[i].longitude, this.latUser, this.longUser);
-
+        this.unitPosicao = new google.maps.LatLng(this.aux_unidade[i].latitude, this.aux_unidade[i].longitude);
+        this.km = (google.maps.geometry.spherical.computeDistanceBetween(this.minhaPosicao, this.unitPosicao) / 1000).toFixed(2);
 
         this.aux_unidade[i].km = parseFloat(this.km);
-        // this.aux_unidade[i].km = parseFloat(this.km.substr(0, 1));
       }
 
       // Buscar pelo menor km
@@ -73,22 +72,9 @@ export class UnitsPage implements OnInit {
         return 0;
       });
 
-      console.log(this.aux_unidade);
-
       // Retornar para visualização na tela
       this.unidade = this.aux_unidade;
     })
   }
 
-  // Calcular lat e long e retornar em Km
-  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var deg2rad = function (deg) { return deg * (Math.PI / 180); }
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
-    var dLon = deg2rad(lon2 - lon1);
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    return d.toFixed(2);
-  }
 }
