@@ -50,7 +50,7 @@ Na sua linha de comando:
 $ git clone https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador.git
 
 # Vá para o repositório 
-$ cd Fatec-DSM-Projeto_Integrador/DoctorOn_BackEnd
+$ cd DoctorOn_BackEnd
 
 # Instalar dependências
 $ composer install
@@ -70,6 +70,9 @@ $ php artisan serve
 ```bash
 # Clone este repositório
 $ git clone https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador.git
+
+# Vá para o repositório 
+$ cd DoctorOn_App
 
 # Instalar dependências
 $ npm install
