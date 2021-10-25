@@ -25,7 +25,7 @@
 
 
   <ion-list>
-    <ion-card class="card" *ngFor="let doctor of doctors">
+    <div class="card" *ngFor="let doctor of doctors">
       <div class="img">
         <div *ngIf="!doctor.img_doctor">
           <img src="../../assets/user.jpg" height="80px" alt="">
@@ -58,6 +58,6 @@
           <p>{{doctor.street}}, {{doctor.number}} - {{doctor.district}}</p>
         </div>
       </div>
-    </ion-card>
+    </div>
   </ion-list>
 </ion-content>
