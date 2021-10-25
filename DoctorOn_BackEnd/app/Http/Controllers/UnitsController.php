@@ -18,4 +18,9 @@ class UnitsController extends Controller
     {
         return Units::select('*')->get();
     }
+
+    public function show(Request $request)
+    {
+        return Units::select('*')->where('id', $request->id)->first();
+    }
 }
