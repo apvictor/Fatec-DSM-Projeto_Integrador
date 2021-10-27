@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function profile(Request $request)
     {
-        $user = JWTAuth::authenticate($request->token);
+        $user = JWTAuth::user();
 
         return response()->json(['user' => $user]);
     }

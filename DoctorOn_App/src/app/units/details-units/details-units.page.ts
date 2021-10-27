@@ -13,8 +13,6 @@ export class DetailsUnitsPage implements OnInit {
 
   public id: any;
 
-  public local: any;
-
   public unidade: any = [];
   public doctor: any = [];
 
@@ -36,9 +34,7 @@ export class DetailsUnitsPage implements OnInit {
 
   async ngOnInit() {
     this.id = this.activateRoute.snapshot.paramMap.get('id');
-    this.local = this.activateRoute.snapshot.paramMap.get('local');
     this.buscarMinhaPosicao();
-    console.log('local', this.local);
     this.authService.unitsDetails(this.id).subscribe(
       (units) => {
         this.unidade = units['units'];
@@ -81,9 +77,6 @@ export class DetailsUnitsPage implements OnInit {
 
 
   async tracarRota(unidadePosicao) {
-
-    console.log(unidadePosicao);
-
     new google.maps.Geocoder().
       geocode({ address: unidadePosicao },
         resultado => {

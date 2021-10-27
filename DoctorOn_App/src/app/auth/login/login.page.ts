@@ -9,28 +9,25 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   constructor(
     private authService: AuthService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController,
     private router: Router,
   ) { }
 
   login = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-    password: new FormControl('', [Validators.required,]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
-
-  ngOnInit() {
-    localStorage.getItem('token');
-    localStorage.clear();
-  }
-
   async doLogin() {
+    let token = localStorage.getItem('token');
+    if (token != '') {
+      localStorage.clear;
+    }
     const loading = await this.loadingCtrl.create({ message: 'Entrando ...' });
     await loading.present();
 

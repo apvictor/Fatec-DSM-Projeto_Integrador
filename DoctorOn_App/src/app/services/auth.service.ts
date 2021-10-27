@@ -9,9 +9,15 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   private url = environment.api;
-  private token = localStorage.getItem('token');
+  private token;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+    this.token = localStorage.getItem('token');
+
+    if (this.token != '') {
+      localStorage.clear();
+    }
+  }
 
   login(user: any): Observable<any> {
     return this.http.post(`${this.url}/login`, user);
@@ -46,8 +52,14 @@ export class AuthService {
     return this.http.get(`${this.url}/units/` + id, { headers });
   }
 
-  specialties(): Observable<any> {
-    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
+  specialties(token): Observable<any> {
+    if (this.token != '') {
+      localStorage.clear();
+      this.token = token;
+    } else {
+      this.token = token;
+    }
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + token });
     return this.http.get(`${this.url}/specialties`, { headers });
   }
 

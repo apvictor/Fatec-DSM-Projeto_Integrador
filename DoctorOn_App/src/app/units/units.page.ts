@@ -37,8 +37,6 @@ export class UnitsPage implements OnInit {
       enableHighAccuracy: true
     }).then((res) => {
       this.minhaPosicao = new google.maps.LatLng(res.coords.latitude, res.coords.longitude);
-      console.log("aqui",res.coords.latitude, res.coords.longitude);
-
       this.localizaUnits();
       loading.dismiss();
     }).catch((e) => {

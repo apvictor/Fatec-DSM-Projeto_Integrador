@@ -18,21 +18,24 @@ export class HomePage implements OnInit {
   specialty: any = [];
   doctors: any = [];
 
+  token = localStorage.getItem('token');
+
   constructor(
     private authService: AuthService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController,
     private router: Router,
     public http: HttpClient,
     public modalController: ModalController,
-    private navCtrl: NavController,
   ) { }
 
   async ngOnInit() {
-
     this.onSpecialty();
+    this.onProfile();
+  }
 
+
+  async onProfile() {
     const loading = await this.loadingCtrl.create({ message: 'Carregando...' });
     loading.present();
 
@@ -58,13 +61,12 @@ export class HomePage implements OnInit {
     );
   }
 
-
   async onSpecialty() {
-    this.authService.specialties().subscribe((specialty) => {
-      this.aux_specialty = specialty['specialties'];
-      // console.log(this.aux_specialty)
-      this.specialty = this.aux_specialty;
-    })
+    this.authService.specialties(this.token).subscribe(
+      (specialty) => {
+        this.aux_specialty = specialty['specialties'];
+        this.specialty = this.aux_specialty;
+      })
   }
 
 
@@ -90,6 +92,9 @@ export class HomePage implements OnInit {
                   message: error.error.message,
                   buttons: ['OK']
                 });
+                localStorage.getItem('token');
+                localStorage.clear();
+                this.router.navigateByUrl('/login');
                 await alert.present();
                 console.log(error.error);
               }
@@ -111,15 +116,9 @@ export class HomePage implements OnInit {
   }
 
   public openPage(specialty) {
-    // console.log(specialty);
-
     this.router.navigateByUrl('/doctors', {
       state: specialty
     });
-
-
-
-
   }
 
 }
