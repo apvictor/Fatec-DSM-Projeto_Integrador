@@ -22,6 +22,7 @@
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
     "@ionic/angular": "^5.5.2",
+    "@types/googlemaps": "^3.43.3",
     "cordova-android": "9.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
