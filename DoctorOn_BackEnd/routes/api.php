@@ -28,7 +28,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
 
     // Doctor
-    Route::get('doctors/', [DoctorController::class, 'searchDoctor']);
+    Route::get('doctors/{specialty}', [DoctorController::class, 'searchDoctor']);
 
 
     // specialties

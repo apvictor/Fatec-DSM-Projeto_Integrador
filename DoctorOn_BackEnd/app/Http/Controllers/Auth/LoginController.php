@@ -58,7 +58,7 @@ class LoginController extends Controller
                 ], 400);
             }
         } catch (JWTException $e) {
-            return $credentials;
+            // return $credentials;
             return response()->json([
                 'success' => false,
                 'message' => 'Não foi possível criar token.',

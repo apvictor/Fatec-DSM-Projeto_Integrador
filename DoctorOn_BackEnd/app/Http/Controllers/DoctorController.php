@@ -17,16 +17,6 @@ class DoctorController extends Controller
 
     public function searchDoctor(Request $request)
     {
-        //Validate data
-        $data = $request->only('specialty');
-        $validator = Validator::make($data, [
-            'specialty' => 'required|string',
-        ]);
-
-        //Send failed response if request is not valid
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
-        }
 
         if ($request->specialty == 'all_specialties') {
             $doctor = Doctor::join('specialties', 'doctors.specialties_id', '=', 'specialties.id')

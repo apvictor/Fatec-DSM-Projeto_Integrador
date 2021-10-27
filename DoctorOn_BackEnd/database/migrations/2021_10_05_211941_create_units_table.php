@@ -17,11 +17,15 @@ class CreateUnitsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('cep');
+            $table->string('km');
             $table->string('street');
             $table->string('number');
             $table->string('district');
             $table->string('latitude');
             $table->string('longitude');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->tinyInteger('always_available');
             $table->timestamps();
         });
     }
