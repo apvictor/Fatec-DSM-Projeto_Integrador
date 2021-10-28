@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   private url = environment.api;
-  private token;
+
+  token = '';
 
   constructor(public http: HttpClient) {
     this.token = localStorage.getItem('token');

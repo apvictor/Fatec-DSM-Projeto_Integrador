@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthGuardService } from './../../services/auth-guard.service';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
@@ -13,6 +14,7 @@ export class LoginPage {
 
   constructor(
     private authService: AuthService,
+    private authGuardService: AuthGuardService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private router: Router,
@@ -36,6 +38,7 @@ export class LoginPage {
         localStorage.setItem('token', success.token);
         loading.dismiss();
         this.router.navigateByUrl('/home');
+        this.authGuardService.authInfo.authenticated = true;
         console.log(success);
       },
       async error => {
@@ -44,6 +47,7 @@ export class LoginPage {
           message: error.error.message,
           buttons: ['OK']
         });
+        this.authGuardService.authInfo.authenticated = false;
         loading.dismiss();
         await alert.present();
         console.log(error.error);

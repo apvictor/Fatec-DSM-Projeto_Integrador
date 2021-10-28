@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController, ModalController, NavController, NavParams, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { AuthGuardService } from './../services/auth-guard.service';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private authGuardService: AuthGuardService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private router: Router,
@@ -83,6 +85,7 @@ export class HomePage implements OnInit {
               async success => {
                 localStorage.getItem('token');
                 localStorage.clear();
+                this.authGuardService.authInfo.authenticated = false;
                 this.router.navigateByUrl('/login');
                 console.log(success);
               },
