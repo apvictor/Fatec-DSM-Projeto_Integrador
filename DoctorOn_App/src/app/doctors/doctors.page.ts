@@ -49,7 +49,7 @@ export class DoctorsPage implements OnInit {
   }
 
   async localizaUser() {
-    const loading = await this.loadingCtrl.create({ message: 'Buscando Unidades...' });
+    const loading = await this.loadingCtrl.create({ message: 'Buscando Médicos...' });
     loading.present();
     this.geolacation.getCurrentPosition({
       timeout: 10000,
@@ -57,16 +57,16 @@ export class DoctorsPage implements OnInit {
     }).then((res) => {
       this.minhaPosicao = new google.maps.LatLng(res.coords.latitude, res.coords.longitude);
       console.log(res.coords.latitude, res.coords.longitude);
-      this.localizaUnits();
+      this.localizaDoctor();
       loading.dismiss();
     }).catch((e) => {
-      this.localizaUnits();
+      this.localizaDoctor();
       console.log(e);
       loading.dismiss();
     })
   }
 
-  async localizaUnits() {
+  async localizaDoctor() {
     this.authService.doctors(this.dataValue).subscribe((doctor) => {
       this.aux_unidade = doctor['doctor'];
 
