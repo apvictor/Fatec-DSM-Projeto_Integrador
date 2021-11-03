@@ -73,5 +73,44 @@ class LoginController extends Controller
         ]);
     }
 
+    // WEB
+    public function index()
+    {
+        return view('login');
+    }
 
+    public function login_web(Request $request)
+    {
+        $msg = '';
+        $credentials = $request->only('email', 'password');
+
+        //valid credential
+        $validator = Validator::make($credentials, [
+            'email' => 'required|email',
+            'password' => 'required|string|min:4|max:50'
+        ]);
+
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 200);
+        }
+
+        $user = User::select('*')->where('email', $credentials['email'])->where('units_id', 1)->first();
+
+        if (!$user) {
+            return $msg = "Usuário não está cadastrado nessa unidade!";
+        } else {
+            //Request is validated
+            //Crean token
+            try {
+                if (!$token = JWTAuth::attempt($credentials)) {
+                    return $msg = "As credenciais de login são inválidas.";
+                }
+            } catch (JWTException $e) {
+                return $msg = 'Não foi possível criar token.';
+            }
+            //Token created, return with success response and jwt token
+            return redirect()->route('home.index');
+        }
+    }
 }

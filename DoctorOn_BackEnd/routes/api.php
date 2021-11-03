@@ -10,7 +10,6 @@ use App\Http\Controllers\UserController;
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'authenticate']);
-
 Route::post('reset', [ForgotPasswordController::class, 'forgotReset']);
 
 

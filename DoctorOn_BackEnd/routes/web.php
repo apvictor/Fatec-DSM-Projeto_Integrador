@@ -1,16 +1,11 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('doctor', [DoctorController::class, 'index'])->name('doctor.index');
+Route::post('doctor', [DoctorController::class, 'store'])->name('doctor.store');
+
+
+Route::get('home', [HomeController::class, 'index'])->name('home.index');
+Route::get('sobre', [HomeController::class, 'sobre'])->name('sobre.index');

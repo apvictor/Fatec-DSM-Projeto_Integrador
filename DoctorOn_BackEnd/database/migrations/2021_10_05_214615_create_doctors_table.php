@@ -20,6 +20,9 @@ class CreateDoctorsTable extends Migration
             $table->char('sex');
             $table->text('img_doctor');
             $table->tinyInteger('active');
+            $table->string('start_time');
+            $table->string('end_time');
+
             $table->timestamps();
 
             $table->unsignedBigInteger('units_id');

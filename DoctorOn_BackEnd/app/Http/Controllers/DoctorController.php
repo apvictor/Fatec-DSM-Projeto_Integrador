@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
+use App\Specialty;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
@@ -10,9 +11,15 @@ use Illuminate\Support\Facades\Validator;
 
 class DoctorController extends Controller
 {
-    public function __construct()
+    private $repository;
+    private $specialties;
+
+    public function __construct(Doctor $doctor, Specialty $specialty)
     {
-        $this->user = JWTAuth::parseToken()->authenticate();
+        $this->repository = $doctor;
+        $this->specialties = $specialty;
+
+        // $this->user = JWTAuth::parseToken()->authenticate();
     }
 
     public function searchDoctor(Request $request)
@@ -39,5 +46,25 @@ class DoctorController extends Controller
         }
 
         return response()->json(['doctor' => $doctor]);
+    }
+
+    // WEB
+
+    public function index()
+    {
+        $specialty = $this->specialties->all();
+
+        return view('doctor', ['specialty' => $specialty]);
+    }
+
+    public function store(Request $request)
+    {
+
+        $data = $request->all();
+        $data['active'] = 0;
+        $data['units_id'] = 1;
+        $this->repository->create($data);
+
+        return redirect()->route('doctor.index');
     }
 }

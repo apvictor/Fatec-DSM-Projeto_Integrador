@@ -1,0 +1,135 @@
+body {
+    background-color: #ebebeb;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    line-height: 14px;
+}
+
+label,
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px
+}
+
+.navbar {
+    background-color: #065535;
+    height: 120px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.link {
+    margin-top: 50px;
+    ;
+}
+
+.link img {
+    margin-top: 50px;
+    ;
+}
+
+
+.colunas {
+    display: flex;
+    justify-content: space-between;
+    background-color: #065535;
+    height: 120px;
+    line-height: 120px;
+    margin: -20px;
+}
+
+.items {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    margin: 0 25px;;
+}
+
+h6 {
+    margin-top: 20px;
+    text-align: center;
+    border-bottom: 5px;
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-style: groove;
+}
+
+.btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 302px;
+    height: 40px;
+    padding-bottom: 0;
+    padding-top: 0;
+    background: #48742C;
+    opacity: 0.4;
+    border-radius: 20px;
+    margin-top: 20px;
+    line-height: 25px;
+
+
+}
+
+#tempo {
+    width: 100px;
+}
+
+label {
+    margin-top: 20px;
+}
+
+
+input {
+    width: 400px;
+    height: 30px;
+}
+
+#especialidade {
+    margin-top: 20px;
+    background: #C4C4C4;
+}
+
+.rodape {
+    padding: 20px;
+    background-color: #48742C;
+    margin-top: 50px;
+}
+
+form {
+    width: 100%;
+}
+
+footer {
+    background-color: #065535;
+    text-align: center;
+    color: white;
+}
+
+#label-nome {
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+
+        width: 100%;
+    }
+
+    input,
+    label {
+        width: 100%;
+    }
+
+    .navbar,
+    .footer {
+        width: 100%;
+    }
+
+}
