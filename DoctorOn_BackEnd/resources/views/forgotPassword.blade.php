@@ -27,7 +27,7 @@
             </div>
 
             <!-- Login Form -->
-            <form action="{{ route('reset') }}" method="POST">
+            <form action="{{ route('reset.store') }}" method="POST">
                 @csrf
                 <input type="text" id="login" class="fadeIn second" name="email" placeholder="E-mail">
                 <input type="submit" class="fadeIn fourth" value="Enviar">

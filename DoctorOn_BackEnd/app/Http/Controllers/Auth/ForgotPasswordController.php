@@ -46,7 +46,16 @@ class ForgotPasswordController extends Controller
         return response()->json(["msg" => 'Nova senha enviada ao ' . $user->email]);
     }
 
-    public function forgotReset_web()
+
+    // WEB
+
+    public function index()
+    {
+        return view('forgotPassword');
+    }
+
+
+    public function store()
     {
         $password = rand(100000, 999999);
 

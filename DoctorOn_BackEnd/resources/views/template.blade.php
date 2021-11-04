@@ -27,14 +27,14 @@
                             <div class="items dropdown">
                                 <a data-toggle="dropdown">CADASTROS</a>
                                 <ul class="dropdown-menu">
-                                    <li> <a href="{{ route('doctor.store') }}">MÉDICOS</a></li>
+                                    <li> <a href="{{ route('doctor.index') }}">MÉDICOS</a></li>
                                     <li> <a href="#">ESPECIALIDADES</a></li>
                                 </ul>
                             </div>
                             <div class="items dropdown">
                                 <a data-toggle="dropdown">LISTAS</a>
                                 <ul class="dropdown-menu">
-                                    <li> <a href="{{ route('doctor.store') }}">MÉDICOS</a></li>
+                                    <li> <a href="{{ route('doctor.index') }}">MÉDICOS</a></li>
                                     <li><a href="#">ESPECIALIDADES</a></li>
                                 </ul>
                             </div>

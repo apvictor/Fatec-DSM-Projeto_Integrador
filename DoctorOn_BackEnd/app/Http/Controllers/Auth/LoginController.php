@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -21,7 +22,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -79,9 +80,8 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function login_web(Request $request)
+    public function store(Request $request)
     {
-        $msg = '';
         $credentials = $request->only('email', 'password');
 
         //valid credential
@@ -95,20 +95,23 @@ class LoginController extends Controller
             return response()->json(['error' => $validator->messages()], 200);
         }
 
-        $user = User::select('*')->where('email', $credentials['email'])->where('units_id', 1)->first();
+        $user = User::select('*')->where('email', $credentials['email'])->where('units_id', '<>', null)->first();
 
         if (!$user) {
-            return $msg = "Usuário não está cadastrado nessa unidade!";
+            return "Usuário não está cadastrado nessa unidade!";
         } else {
             //Request is validated
             //Crean token
             try {
                 if (!$token = JWTAuth::attempt($credentials)) {
-                    return $msg = "As credenciais de login são inválidas.";
+                    return "As credenciais de login são inválidas.";
                 }
             } catch (JWTException $e) {
-                return $msg = 'Não foi possível criar token.';
+                return dd('Não foi possível criar token.');
             }
+
+            Auth::loginUsingId($user->id);
+
             //Token created, return with success response and jwt token
             return redirect()->route('home.index');
         }

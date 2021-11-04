@@ -22,7 +22,7 @@
             </div>
 
             <!-- Login Form -->
-            <form action="{{ route('index') }}" method="POST">
+            <form action="{{ route('login.store') }}" method="POST">
                 @csrf
                 <input type="email" class="fadeIn second" name="email" placeholder="E-mail">
                 <input type="password" class="fadeIn third" name="password" placeholder="Senha">
