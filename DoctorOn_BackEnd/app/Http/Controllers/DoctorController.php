@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Doctor;
 use App\Specialty;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class DoctorController extends Controller
@@ -59,9 +62,30 @@ class DoctorController extends Controller
 
     public function store(Request $request)
     {
-
         $data = $request->all();
-        $data['active'] = 0;
+
+        if ($request->hasFile('img_doctor') && $request->file('img_doctor')->isValid()) {
+            $ext = $request->img_doctor->extension();
+
+            if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
+                try {
+                    // SUBIR PARA SERVER AWS
+                    $name = Str::uuid() . '.' . $ext;
+
+                    $file = $request->file('img_doctor');
+
+                    Storage::disk('s3')->put($name, file_get_contents($file));
+
+                    $url = Storage::disk('s3')->url($name);
+                    $data['img_doctor'] = $url;
+                } catch (FileNotFoundException $e) {
+                    echo "Erro: " . $e->getMessage();
+                }
+            } else {
+                dd('Formato invalido!');
+            }
+        }
+        $data['active'] = 1;
         $data['units_id'] = 1;
         $this->repository->create($data);
 

@@ -9,7 +9,7 @@
 
 @section('content')
     <h6>Cadastro de Médicos</h6>
-    <form action="{{ route('doctor.store') }}" method="POST">
+    <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label for="name" id="label-nome">Nome:</label>
