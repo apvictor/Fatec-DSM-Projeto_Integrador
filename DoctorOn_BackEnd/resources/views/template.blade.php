@@ -46,6 +46,10 @@
                                 <a style="color: white; text-decoration: none;"
                                     href="{{ route('sobre.index') }}">SOBRE</a>
                             </div>
+                            <div class="items">
+                                <a style="color: white; text-decoration: none;"
+                                    href="{{ route('logout') }}">LOGOUT</a>
+                            </div>
                         </div>
                     </div>
                 </div>

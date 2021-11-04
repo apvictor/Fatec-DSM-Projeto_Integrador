@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
@@ -15,6 +16,12 @@ Route::post('reset', [ForgotPasswordController::class, 'store'])->name('reset.st
 
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('logout', function () {
+        Auth::logout();
+        return redirect()->route('login');
+    })->name('logout');
+
     Route::get('home', [HomeController::class, 'index'])->name('home.index');
 
     Route::get('doctor', [DoctorController::class, 'index'])->name('doctor.index');

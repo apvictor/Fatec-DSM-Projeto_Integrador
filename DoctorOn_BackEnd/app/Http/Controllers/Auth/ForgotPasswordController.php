@@ -75,6 +75,6 @@ class ForgotPasswordController extends Controller
             $m->to($user->email, $user->name)->subject('Nova Senha de Acesso');
         });
 
-        return response()->json(["msg" => 'Nova senha enviada ao ' . $user->email]);
+        return view('login');
     }
 }
