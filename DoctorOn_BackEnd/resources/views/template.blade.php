@@ -15,32 +15,32 @@
 
 <body>
     @section('sidebar')
-        <nav class="navbar navbar-light">
+        <nav class="navbar">
             <div class="container">
                 <div class="container-fluid">
                     <div class="colunas">
-                        <img src="images/logo.png" alt="">
-                        <div style="display: flex" class="link">
+                        <img src="images/logo.png">
+                        <div style="display: flex">
                             <div class="items">
                                 <a style="color: white; text-decoration: none;" href="{{ route('home.index') }}">HOME</a>
                             </div>
                             <div class="items dropdown">
                                 <a data-toggle="dropdown">CADASTROS</a>
-                                <ul style="top: 25px" class="dropdown-menu">
-                                    <li> <a href="{{ route('doctor.store') }}">CADASTRO DE MÉDICOS</a></li>
-                                    <li> <a href="#">CADASTRO DE ESPECIALIDADES</a></li>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="{{ route('doctor.store') }}">MÉDICOS</a></li>
+                                    <li> <a href="#">ESPECIALIDADES</a></li>
                                 </ul>
                             </div>
                             <div class="items dropdown">
                                 <a data-toggle="dropdown">LISTAS</a>
-                                <ul style="top: 25px" class="dropdown-menu">
+                                <ul class="dropdown-menu">
                                     <li> <a href="{{ route('doctor.store') }}">MÉDICOS</a></li>
                                     <li><a href="#">ESPECIALIDADES</a></li>
                                 </ul>
                             </div>
                             <div class="items">
                                 <a style="color: white; text-decoration: none;"
-                                    href="{{ route('sobre.index') }}">CONTATO</a>
+                                    href="{{ route('contato.index') }}">CONTATO</a>
                             </div>
                             <div class="items">
                                 <a style="color: white; text-decoration: none;"
@@ -58,9 +58,7 @@
     </div>
 
     @section('footer')
-        <footer>
-            <h4>Fale Conosco</h4>
-            <p>(11) 99505-2373</p>
+        <footer style="padding: 10px">
             <p>Todos os direitos reservados © Copyright 2021</p>
         </footer>
     @show

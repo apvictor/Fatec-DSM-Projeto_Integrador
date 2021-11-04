@@ -9,3 +9,4 @@ Route::post('doctor', [DoctorController::class, 'store'])->name('doctor.store');
 
 Route::get('home', [HomeController::class, 'index'])->name('home.index');
 Route::get('sobre', [HomeController::class, 'sobre'])->name('sobre.index');
+Route::get('contato', [HomeController::class, 'contato'])->name('contato.index');

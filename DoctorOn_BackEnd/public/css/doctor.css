@@ -4,34 +4,12 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-* {
-    line-height: 14px;
-}
-
-label,
-input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px
-}
-
 .navbar {
     background-color: #065535;
     height: 120px;
     padding-top: 0px;
     padding-bottom: 0px;
 }
-
-.link {
-    margin-top: 50px;
-    ;
-}
-
-.link img {
-    margin-top: 50px;
-    ;
-}
-
 
 .colunas {
     display: flex;
@@ -46,7 +24,26 @@ input {
     text-decoration: none;
     color: white;
     cursor: pointer;
-    margin: 0 25px;;
+    margin: 0 25px;
+}
+
+.dropdown-menu {
+    top: 75px;
+}
+
+footer {
+    background-color: #065535;
+    text-align: center;
+    color: white;
+}
+
+/* TEMPLATE */
+
+label,
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px
 }
 
 h6 {
@@ -73,8 +70,6 @@ h6 {
     border-radius: 20px;
     margin-top: 20px;
     line-height: 25px;
-
-
 }
 
 #tempo {
@@ -96,21 +91,10 @@ input {
     background: #C4C4C4;
 }
 
-.rodape {
-    padding: 20px;
-    background-color: #48742C;
-    margin-top: 50px;
-}
-
 form {
     width: 100%;
 }
 
-footer {
-    background-color: #065535;
-    text-align: center;
-    color: white;
-}
 
 #label-nome {
     margin-top: 100px;

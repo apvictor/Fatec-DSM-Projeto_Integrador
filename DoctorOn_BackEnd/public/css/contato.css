@@ -39,67 +39,52 @@ footer {
 
 /* TEMPLATE */
 
+.items {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    margin: 0 25px;
+}
+
+.form {
+    margin-top: 20px;
+    padding: 40px 50px 50px 50px;
+}
+
+.card:nth-of-type(1) {
+    background-color: #065535;
+    color: white;
+}
+
+.card-subtitle {
+    color: rgb(190, 190, 190);
+}
+
+.card {
+    width: 440px;
+    background-color: #065535;
+}
+
+.btn {
+    width: 100%;
+}
+
 .col {
     display: flex;
 }
 
-#sobre {
-    margin-top: 50px;
-    margin-bottom: 50px;
+.icones img {
+    width: 35px;
+    margin: 3px;
 }
 
-.sobre-txt {
-    width: 400px;
-    margin-left: 100px;
+.icones a {
+    font-size: 1px;
 }
 
-.sobre-img {
-    width: 400px;
-    margin-left: 100px;
+.icones {
+    padding-left: 40px;
 }
-
-.sobre-img img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-}
-
-#unidades {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 50px;
-}
-
-.unidades-card img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-left: 50px;
-}
-
-.funcionalidades-txt {
-    width: 350px;
-    margin-left: 50px;
-}
-
-.funcionalidades-video {
-    width: 400px;
-    margin-left: 50px;
-}
-
-.icones-card {
-    margin-left: 150px;
-    margin-bottom: 100px;
-}
-
-.txt {
-    text-align: left;
-}
-
-.contato {
-    text-align: right;
-}
-
 
 @media screen and (max-width: 600px) {
     .container {
@@ -118,23 +103,11 @@ footer {
         display: block;
     }
 
-    #unidades {
-        display: block;
-    }
-
-    #funcionalidades {
-        display: block;
-    }
-
-    #icones {
-        display: block;
-    }
-
-    footer {
-        display: block;
-    }
-
     .colunas {
+        display: block;
+    }
+
+    .footer {
         display: block;
     }
 }

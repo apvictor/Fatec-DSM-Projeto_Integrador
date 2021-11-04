@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('css', 'style_medico.css')
+@section('css', 'doctor.css')
 @section('title', 'Home')
 
 @section('sidebar')
