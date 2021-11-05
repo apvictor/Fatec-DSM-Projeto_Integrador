@@ -22,8 +22,6 @@ class DoctorController extends Controller
     {
         $this->repository = $doctor;
         $this->specialties = $specialty;
-
-        // $this->user = JWTAuth::parseToken()->authenticate();
     }
 
     public function searchDoctor(Request $request)

@@ -99,4 +99,9 @@ export class DetailsUnitsPage implements OnInit {
         });
   }
 
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
+
 }

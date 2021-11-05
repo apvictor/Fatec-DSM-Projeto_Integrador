@@ -23,7 +23,10 @@ class UnitsController extends Controller
     public function show(Request $request)
     {
         $units = Units::select('*')->where('id', $request->id)->first();
-        $doctor = Doctor::join('specialties', 'specialties.id', '=', 'doctors.id')->where('doctors.units_id', $request->id)->get();
+        $doctor = Doctor::join('specialties', 'specialties.id', '=', 'doctors.specialties_id')
+            ->where('doctors.units_id', $units->id)
+            ->select('doctors.*', 'specialties.specialty')
+            ->get();
 
         return response()->json([
             'units' => $units,

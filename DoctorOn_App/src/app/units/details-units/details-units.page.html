@@ -39,31 +39,36 @@
         </div>
       </div>
 
-      <ion-slides pager="true" [options]="">
+      <ion-slides pager="true" [options]="slideOpts">
         <ion-slide *ngFor="let doc of doctor">
           <div class="card">
             <span *ngIf="doc.active == 1" class="icon-online"></span>
             <div class="img">
               <div *ngIf="!doc.img_doctor">
-                <img src="../../assets/user.jpg" height="80px" alt="">
+                <img src="../../assets/user.jpg" height="80px">
               </div>
-              <img src="{{doc.img_doctor}}" height="80px" alt="">
+              <img src="{{doc.img_doctor}}" height="80px">
             </div>
 
             <div class="text">
               <div class="online">
                 <div *ngIf="doc.sex == 'M'">
-                  <h2>Dr. {{doc.name}}</h2>
+                  <h3 class="ion-text-wrap">
+                    <span style="font-size: 16px;">Dr.</span>
+                    {{doc.name}}
+                  </h3>
                 </div>
                 <div *ngIf="doc.sex == 'F'">
-                  <h2>Dra. {{doc.name}}</h2>
+                  <h3 class="ion-text-wrap">
+                    <span style="font-size: 16px;">Dra.</span>
+                    {{doc.name}}
+                  </h3>
                 </div>
               </div>
               <div class="specialty">
                 <p>{{doc.specialty}} <br> CRM: {{doc.crm}}</p>
               </div>
             </div>
-
           </div>
         </ion-slide>
       </ion-slides>
