@@ -28,6 +28,10 @@ export class AuthService {
     return this.http.post(`${this.url}/register`, user);
   }
 
+  forgotPassword(dados: any) {
+    return this.http.post(`${this.url}/reset`, dados);
+  }
+
   logout(): Observable<any> {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
     return this.http.get(`${this.url}/logout`, { headers });
@@ -69,9 +73,6 @@ export class AuthService {
     return this.http.get(`${this.url}/doctors/` + specialty, { headers });
   }
 
-  forgotPassword(dados: string) {
-    return this.http.post(`${this.url}/reset/`, dados);
-  }
 
 
 

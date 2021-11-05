@@ -31,7 +31,7 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   async forgotPassword() {
-    const loading = await this.loadingCtrl.create({ message: 'Enviando...' });
+    const loading = await this.loadingCtrl.create({ message: 'Redefinindo...' });
     await loading.present();
 
     this.authService.forgotPassword(this.form.value).subscribe(
@@ -50,7 +50,7 @@ export class ForgotPasswordPage implements OnInit {
       },
       async error => {
         const alert = await this.alertCtrl.create({
-          header: 'Falha ao enviar email',
+          header: 'Falha ao redefinir senha',
           message: error.error.msg,
           buttons: ['OK']
         });

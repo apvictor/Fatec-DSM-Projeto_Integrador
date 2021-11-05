@@ -8,5 +8,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
         <domain includeSubdomains="true">https://doctor-on.herokuapp.com/</domain>
+        <domain includeSubdomains="true">https://http://127.0.0.1:8000/</domain>
     </domain-config>
 </network-security-config>
