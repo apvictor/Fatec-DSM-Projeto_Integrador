@@ -90,4 +90,14 @@ class DoctorController extends Controller
 
         return redirect()->route('home.index');
     }
+
+    public function activeDoctor($id, $active)
+    {
+        $val = (!$active) ? 1 : 0;
+
+        $user = $this->repository->where('id', $id)->first();
+        $user->update(['active' => $val]);
+
+        return redirect()->route('home.index');
+    }
 }

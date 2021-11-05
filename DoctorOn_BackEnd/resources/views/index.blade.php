@@ -48,9 +48,20 @@
                         <td>{{ $doctor->specialty }}</td>
                         <td>
                             @if ($doctor->active == 1)
-                                <button type="button" class="btn btn-dark">Desativar</button>
+                                <a style="text-decoration: none;"
+                                    href="{{ route('doctor.active', [$doctor->id, $doctor->active]) }}">
+                                    <button type="button" class="btn btn-dark">
+                                        Desativar
+                                    </button>
+
+                                </a>
                             @else
-                                <button type="button" class="btn btn-dark">Ativar</button>
+                                <a style="text-decoration: none;"
+                                    href="{{ route('doctor.active', [$doctor->id, $doctor->active]) }}">
+                                    <button type="button" class="btn btn-dark">
+                                        Ativar
+                                    </button>
+                                </a>
                             @endif
                         </td>
                     </tr>
