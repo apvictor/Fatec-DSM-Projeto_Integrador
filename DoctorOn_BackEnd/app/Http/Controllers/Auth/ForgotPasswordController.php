@@ -25,9 +25,10 @@ class ForgotPasswordController extends Controller
 
     public function forgotReset()
     {
-        $password = rand(100000, 999999);
-
-        $credentials = request()->validate(['email' => 'required|email']);
+        $credentials = request()->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
         // SELECT USER and UPDATE PASSWORD USER
         $user = User::where('email', $credentials['email'])->first();
@@ -36,14 +37,9 @@ class ForgotPasswordController extends Controller
             return response()->json(["msg" => 'E-mail inexistente na base de dados'], 400);
         }
 
-        $user->update(['password' => Hash::make($password)]);
+        $user->update(['password' => Hash::make($credentials['password'])]);
 
-        Mail::send('emails.mail', ['user' => $user, 'password' => $password], function ($m) use ($user) {
-            $m->from('doctoron21@gmail.com', 'DoctorOn');
-            $m->to($user->email, $user->name)->subject('Nova Senha de Acesso');
-        });
-
-        return response()->json(["msg" => 'Nova senha enviada ao ' . $user->email]);
+        return response()->json(["msg" => 'Senha alterada com sucesso!']);
     }
 
 
@@ -54,12 +50,12 @@ class ForgotPasswordController extends Controller
         return view('forgotPassword');
     }
 
-
     public function store()
     {
-        $password = rand(100000, 999999);
-
-        $credentials = request()->validate(['email' => 'required|email']);
+        $credentials = request()->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
         // SELECT USER and UPDATE PASSWORD USER
         $user = User::where('email', $credentials['email'])->first();
@@ -68,12 +64,7 @@ class ForgotPasswordController extends Controller
             return response()->json(["msg" => 'E-mail inexistente na base de dados'], 400);
         }
 
-        $user->update(['password' => Hash::make($password)]);
-
-        Mail::send('emails.mail', ['user' => $user, 'password' => $password], function ($m) use ($user) {
-            $m->from('doctoron21@gmail.com', 'DoctorOn');
-            $m->to($user->email, $user->name)->subject('Nova Senha de Acesso');
-        });
+        $user->update(['password' => Hash::make($credentials['password'])]);
 
         return view('login');
     }

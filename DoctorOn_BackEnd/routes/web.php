@@ -14,7 +14,6 @@ Route::post('/', [LoginController::class, 'store'])->name('login.store');
 Route::get('reset', [ForgotPasswordController::class, 'index'])->name('reset.index');
 Route::post('reset', [ForgotPasswordController::class, 'store'])->name('reset.store');
 
-
 Route::middleware(['auth'])->group(function () {
 
     Route::get('logout', function () {
