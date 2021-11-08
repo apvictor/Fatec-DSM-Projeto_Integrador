@@ -15,7 +15,7 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('unit');
             $table->string('cep');
             $table->string('km');
             $table->string('street');
@@ -26,6 +26,7 @@ class CreateUnitsTable extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->tinyInteger('always_available');
+            $table->tinyInteger('phone');
             $table->timestamps();
         });
     }

@@ -19,7 +19,18 @@
             <div class="container">
                 <div class="container-fluid">
                     <div class="colunas">
-                        <img src="images/logo.png">
+                        <div style="display: flex;">
+                            <img src="images/LOGO.svg" style="margin: 10px">
+                            @if (Auth::user()->type == 2)
+                                <p style="position: absolute; top: 35px; left: 10%; color: white;">
+                                    {{ Auth::user()->name }}
+                                </p>
+                            @else
+                                <p style="position: absolute; top: 35px; left: 10%; color: white;">
+                                    {{ Auth::user()->name }}
+                                </p>
+                            @endif
+                        </div>
                         <div style="display: flex">
                             <div class="items">
                                 <a style="color: white; text-decoration: none;" href="{{ route('home.index') }}">HOME</a>
@@ -28,7 +39,9 @@
                                 <a data-toggle="dropdown">CADASTROS</a>
                                 <ul class="dropdown-menu">
                                     <li> <a href="{{ route('doctor.index') }}">MÉDICOS</a></li>
-                                    <li> <a href="#">ESPECIALIDADES</a></li>
+                                    @if (Auth::user()->type == 2)
+                                        <li> <a href="{{ route('specialty.index') }}">ESPECIALIDADES</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="items dropdown">
@@ -47,8 +60,7 @@
                                     href="{{ route('sobre.index') }}">SOBRE</a>
                             </div>
                             <div class="items">
-                                <a style="color: white; text-decoration: none;"
-                                    href="{{ route('logout') }}">LOGOUT</a>
+                                <a style="color: white; text-decoration: none;" href="{{ route('logout') }}">LOGOUT</a>
                             </div>
                         </div>
                     </div>
@@ -58,6 +70,11 @@
     @show
 
     <div class="container">
+        <div>
+            @if (@isset($msg))
+                <p>{{ $msg }} </p>
+            @endif
+        </div>
         @yield('content')
     </div>
 

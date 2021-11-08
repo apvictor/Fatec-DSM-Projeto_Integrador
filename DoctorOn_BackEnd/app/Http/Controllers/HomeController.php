@@ -22,6 +22,7 @@ class HomeController extends Controller
         $doctor_all = Doctor::join('specialties', 'doctors.specialties_id', '=', 'specialties.id')
             ->where('units_id',  $user->units_id)
             ->select('doctors.*', 'specialties.specialty')
+            ->latest("updated_at")
             ->paginate(3);
 
         $doctor_count = Doctor::select()->where('units_id',  $user->units_id)->count();

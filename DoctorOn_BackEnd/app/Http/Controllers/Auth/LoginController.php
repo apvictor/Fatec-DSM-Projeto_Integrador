@@ -87,27 +87,30 @@ class LoginController extends Controller
         //valid credential
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
-            'password' => 'required|string|min:4|max:50'
+            'password' => 'required'
         ]);
 
         //Send failed response if request is not valid
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
+            return view('login')->with('msg', $validator->messages());
         }
 
-        $user = User::select('*')->where('email', $credentials['email'])->where('units_id', '<>', null)->first();
+        $user = User::select('*')->where('email', $credentials['email'])
+            ->where('type', 1) //User de Units
+            ->orWhere('type', 2) //User Admin
+            ->first();
 
         if (!$user) {
-            return "Usuário não está cadastrado nessa unidade!";
+            return view('login')->with('msg', "Usuário não está cadastrado nessa unidade!");
         } else {
             //Request is validated
             //Crean token
             try {
                 if (!$token = JWTAuth::attempt($credentials)) {
-                    return "As credenciais de login são inválidas.";
+                    return view('login')->with('msg', "As credenciais de login são inválidas.");
                 }
             } catch (JWTException $e) {
-                return dd('Não foi possível criar token.');
+                return view('login')->with('msg', 'Não foi possível criar token.');
             }
 
             Auth::loginUsingId($user->id);

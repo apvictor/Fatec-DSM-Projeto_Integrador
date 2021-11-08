@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('css', 'doctor.css')
-@section('title', 'Home')
+@section('title', 'Médico')
 
 @section('sidebar')
     @parent
@@ -12,11 +12,11 @@
     <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <label for="name" id="label-nome">Nome:</label>
-        <input type="text" name="name" id="name" autocomplete="off">
+        <label>Nome:</label>
+        <input type="text" name="name" id="name">
 
         <label for="crm">CRM:</label>
-        <input type="text" name="crm" id="crm" autocomplete="off">
+        <input type="text" name="crm" id="crm">
 
         <label for="especialidade">Selecione a Especialidade:</label>
         <select name="specialties_id" id="especialidade">

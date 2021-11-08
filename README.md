@@ -3,7 +3,8 @@
 
 <!-- Logo -->
 <h1 align="center">
-    <img src="src/assets/logo.png" width="200px" />
+    <img src="https://ik.imagekit.io/mnbr5uwksus/DoctorOn/LOGO_j-IGD2aXNCE.svg?updatedAt=1636410321224" width="200px" />
+    
 </h1>
 
 Apresentação do Projeto

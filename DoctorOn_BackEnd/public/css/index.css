@@ -35,6 +35,9 @@ footer {
     background-color: #065535;
     text-align: center;
     color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 /* TEMPLATE */

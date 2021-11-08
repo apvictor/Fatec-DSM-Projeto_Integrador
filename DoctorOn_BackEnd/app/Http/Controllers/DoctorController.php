@@ -27,7 +27,7 @@ class DoctorController extends Controller
     public function searchDoctor(Request $request)
     {
 
-        if ($request->specialty == 'all_specialties') {
+        if ($request->specialty == 'todos') {
             $doctor = Doctor::join('specialties', 'doctors.specialties_id', '=', 'specialties.id')
                 ->join('units', 'doctors.units_id', '=', 'units.id')
                 ->where('doctors.active', 1)
@@ -55,12 +55,43 @@ class DoctorController extends Controller
     public function index()
     {
         $specialty = $this->specialties->all();
+        // Remover a Especialidade Todos
+        unset($specialty[7]);
 
         return view('doctor', ['specialty' => $specialty]);
     }
 
     public function store(Request $request)
     {
+        $specialty = $this->specialties->all();
+        // Remover a Especialidade Todos
+        unset($specialty[7]);
+
+        $credentials = $request->only(
+            'name',
+            'crm',
+            'specialties_id',
+            'sex',
+            'img_doctor',
+            'start_time',
+            'end_time'
+        );
+
+        //valid credential
+        $validator = Validator::make($credentials, [
+            'name' => 'required',
+            'crm' => 'required',
+            'specialties_id' => 'required',
+            'sex' => 'required',
+            'img_doctor' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return view('doctor', ['specialty' => $specialty])->with('msg', $validator->messages());
+        }
+
         $user = Auth::user();
 
         $data = $request->all();
@@ -76,17 +107,18 @@ class DoctorController extends Controller
                     $url = Storage::disk('s3')->url($name);
                     $data['img_doctor'] = $url;
                 } catch (FileNotFoundException $e) {
-                    echo "Erro: " . $e->getMessage();
+                    return view('doctor', ['specialty' => $specialty])->with('msg', $e->getMessage());
                 }
             } else {
-                dd('Formato invalido!');
+                return view('doctor', ['specialty' => $specialty])->with('msg', 'Formato invalido!');
             }
         }
         $data['active'] = 0;
+        $data['type'] = 1;
         $data['units_id'] = $user->units_id;
         $this->repository->create($data);
 
-        return redirect()->route('home.index');
+        return redirect()->route('home.index')->with('msg', 'Médico cadastrado com sucesso!');
     }
 
     public function activeDoctor($id, $active)

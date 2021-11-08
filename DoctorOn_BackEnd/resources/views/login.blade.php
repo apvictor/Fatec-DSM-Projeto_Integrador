@@ -21,6 +21,10 @@
                 <img src="images/LOGO.svg" id="icon" />
             </div>
 
+            <div class="fadeIn first">
+                <h3>Login</h3>
+            </div>
+
             <!-- Login Form -->
             <form action="{{ route('login.store') }}" method="POST">
                 @csrf
@@ -28,6 +32,12 @@
                 <input type="password" class="fadeIn third" name="password" placeholder="Senha">
                 <input type="submit" class="fadeIn fourth" value="Entrar">
             </form>
+
+            <div>
+                @if (@isset($msg))
+                    <p>{{ $msg }}</p>
+                @endif
+            </div>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
