@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthGuardService } from './../../services/auth-guard.service';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
@@ -9,28 +10,26 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   constructor(
     private authService: AuthService,
+    private authGuardService: AuthGuardService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController,
     private router: Router,
   ) { }
 
   login = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-    password: new FormControl('', [Validators.required,]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
-
-  ngOnInit() {
-    localStorage.getItem('token');
-    localStorage.clear();
-  }
-
   async doLogin() {
+    let token = localStorage.getItem('token');
+    if (token != '') {
+      localStorage.clear;
+    }
     const loading = await this.loadingCtrl.create({ message: 'Entrando ...' });
     await loading.present();
 
@@ -39,6 +38,7 @@ export class LoginPage implements OnInit {
         localStorage.setItem('token', success.token);
         loading.dismiss();
         this.router.navigateByUrl('/home');
+        this.authGuardService.authInfo.authenticated = true;
         console.log(success);
       },
       async error => {
@@ -47,6 +47,7 @@ export class LoginPage implements OnInit {
           message: error.error.message,
           buttons: ['OK']
         });
+        this.authGuardService.authInfo.authenticated = false;
         loading.dismiss();
         await alert.present();
         console.log(error.error);

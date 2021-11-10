@@ -3,32 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
+use App\Specialty;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class DoctorController extends Controller
 {
-    public function __construct()
+    private $repository;
+    private $specialties;
+
+    public function __construct(Doctor $doctor, Specialty $specialty)
     {
-        $this->user = JWTAuth::parseToken()->authenticate();
+        $this->repository = $doctor;
+        $this->specialties = $specialty;
     }
 
     public function searchDoctor(Request $request)
     {
-        //Validate data
-        $data = $request->only('specialty');
-        $validator = Validator::make($data, [
-            'specialty' => 'required|string',
-        ]);
 
-        //Send failed response if request is not valid
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
-        }
-
-        if ($request->specialty == 'all_specialties') {
+        if ($request->specialty == 'todos') {
             $doctor = Doctor::join('specialties', 'doctors.specialties_id', '=', 'specialties.id')
                 ->join('units', 'doctors.units_id', '=', 'units.id')
                 ->where('doctors.active', 1)
@@ -49,5 +48,108 @@ class DoctorController extends Controller
         }
 
         return response()->json(['doctor' => $doctor]);
+    }
+
+    // WEB
+
+    public function index()
+    {
+        $specialty = $this->specialties->all();
+        // Remover a Especialidade Todos
+        unset($specialty[7]);
+
+        return view('doctor', ['specialty' => $specialty]);
+    }
+
+    public function store(Request $request)
+    {
+        $specialty = $this->specialties->all();
+        // Remover a Especialidade Todos
+        unset($specialty[7]);
+
+        $credentials = $request->only(
+            'name',
+            'crm',
+            'specialties_id',
+            'sex',
+            'img_doctor',
+            'start_time',
+            'end_time'
+        );
+
+        //valid credential
+        $validator = Validator::make($credentials, [
+            'name' => 'required',
+            'crm' => 'required',
+            'specialties_id' => 'required',
+            'sex' => 'required',
+            'img_doctor' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return view('doctor', ['specialty' => $specialty])->with('msg', $validator->messages());
+        }
+
+        $user = Auth::user();
+
+        $data = $request->all();
+
+        if ($request->hasFile('img_doctor') && $request->file('img_doctor')->isValid()) {
+            $ext = $request->img_doctor->extension();
+            if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
+                try {
+                    // SUBIR PARA SERVER AWS
+                    $name = Str::uuid() . '.' . $ext;
+                    $file = $request->file('img_doctor');
+                    Storage::disk('s3')->put($name, file_get_contents($file));
+                    $url = Storage::disk('s3')->url($name);
+                    $data['img_doctor'] = $url;
+                } catch (FileNotFoundException $e) {
+                    return view('doctor', ['specialty' => $specialty])->with('msg', $e->getMessage());
+                }
+            } else {
+                return view('doctor', ['specialty' => $specialty])->with('msg', 'Formato invalido!');
+            }
+        }
+        $data['active'] = 0;
+        $data['type'] = 1;
+        $data['units_id'] = $user->units_id;
+        $this->repository->create($data);
+
+        return redirect()->route('home.index')->with('msg', 'Médico cadastrado com sucesso!');
+    }
+
+    public function activeDoctor($id, $active)
+    {
+        $val = (!$active) ? 1 : 0;
+
+        $user = $this->repository->where('id', $id)->first();
+        $user->update(['active' => $val]);
+
+        return redirect()->route('home.index');
+    }
+
+    public function list()
+    {
+        $user = Auth::user();
+
+        $doctor_all = Doctor::join('specialties', 'doctors.specialties_id', '=', 'specialties.id')
+            ->where('units_id',  $user->units_id)
+            ->select('doctors.*', 'specialties.specialty')
+            ->latest("updated_at")
+            ->paginate(4);
+
+        return view('list_doctor', ['doctor_all' => $doctor_all]);
+    }
+
+    public function destroy($id)
+    {
+        $doctor = $this->repository->where('id', $id)->first();
+
+        $doctor->delete();
+
+        return redirect()->route('doctor.list.index');
     }
 }

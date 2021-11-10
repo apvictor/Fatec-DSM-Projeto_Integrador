@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -21,7 +22,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -58,7 +59,7 @@ class LoginController extends Controller
                 ], 400);
             }
         } catch (JWTException $e) {
-            return $credentials;
+            // return $credentials;
             return response()->json([
                 'success' => false,
                 'message' => 'Não foi possível criar token.',
@@ -73,5 +74,49 @@ class LoginController extends Controller
         ]);
     }
 
+    // WEB
+    public function index()
+    {
+        return view('login');
+    }
 
+    public function store(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        //valid credential
+        $validator = Validator::make($credentials, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return view('login')->with('msg', $validator->messages());
+        }
+
+        $user = User::select('*')->where('email', $credentials['email'])
+            ->where('type', 1) //User de Units
+            ->orWhere('type', 2) //User Admin
+            ->first();
+
+        if (!$user) {
+            return view('login')->with('msg', "Usuário não está cadastrado nessa unidade!");
+        } else {
+            //Request is validated
+            //Crean token
+            try {
+                if (!$token = JWTAuth::attempt($credentials)) {
+                    return view('login')->with('msg', "As credenciais de login são inválidas.");
+                }
+            } catch (JWTException $e) {
+                return view('login')->with('msg', 'Não foi possível criar token.');
+            }
+
+            Auth::loginUsingId($user->id);
+
+            //Token created, return with success response and jwt token
+            return redirect()->route('home.index');
+        }
+    }
 }

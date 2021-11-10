@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController,  } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
@@ -23,9 +22,6 @@ export class UnitsPage implements OnInit {
     private geolacation: Geolocation,
     private authService: AuthService,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController,
-    private toastCtrl: ToastController,
-    private router: Router,
     public http: HttpClient
   ) { }
 
@@ -41,8 +37,6 @@ export class UnitsPage implements OnInit {
       enableHighAccuracy: true
     }).then((res) => {
       this.minhaPosicao = new google.maps.LatLng(res.coords.latitude, res.coords.longitude);
-      console.log(res.coords.latitude, res.coords.longitude);
-
       this.localizaUnits();
       loading.dismiss();
     }).catch((e) => {

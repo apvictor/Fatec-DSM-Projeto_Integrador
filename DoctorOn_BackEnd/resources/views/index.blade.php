@@ -1,122 +1,79 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+@extends('template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>DoctorOn</title>
-</head>
+@section('css', 'index.css')
+@section('title', 'Home')
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">
-                            <img src="images/logo.png" width="120">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">LOGIN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CADASTRO</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CONTATO</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+@section('sidebar')
+    @parent
+@stop
 
-    <div class="container">
-        <div class="apresentacao">
-            <div class="colunas">
-                <div class="apresentacao-txt">
-                    <h2>DoctorOn</h2>
-                    <p>Uma poderosa ferramenta para ajudar os usuários do SUS.</p>
-                    <span>DoctorOn</span> consiste em um aplicativo que possibilita aos usuários do SUS consultar
-                    médicos de
-                    acordo
-                    com a especialidade, UBS(s), UPA(s) e Hospitais de acordo com a localidade informada pelo usuário no
-                    aplicativo.</p>
-                </div>
-                <div class="apresentacao-img">
-                    <img src="images/medico.png">
-                </div>
-            </div>
+@section('content')
+
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <div class="card">
+            <h3>{{ $doctor_active }}</h3>
+            <h4>Médicos Ativos</h4>
         </div>
-        <hr>
-        <div class="unidades">
-            <div class="colunas">
-                <div class="unidades-card">
-                    <img src="images/consulta.png">
-                </div>
-                <div class="unidades-card">
-                    <img src="images/vacinacao.png">
-                </div>
-                <div class="unidades-card">
-                    <img src="images/hospital.png">
-                </div>
-            </div>
+        <div class="card">
+            <h3>{{ $doctor_count }}</h3>
+            <h4>Médicos</h4>
         </div>
-        <hr>
-        <div class="aplicativo">
-            <div class="colunas">
-                <div class="aplicativo-txt">
-                    <h3>DoctorOn</h3>
-                    <p>Para conhecer o aplicativo e todas as funcionalidades, assista o vídeo ao lado.</p>
-                </div>
-                <div class="aplicativo-video">
-                    <iframe width="400" height="215" src="https://www.youtube.com/embed/L_JSUkn7LME"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="icones">
-            <div class="colunas">
-                <div class="icones-card">
-                    <img src="images/baby-100.png">
-                </div>
-                <div class="icones-card">
-                    <img src="images/brain-100.png">
-                </div>
-                <div class="icones-card">
-                    <img src="images/cirurgia-100.png">
-                </div>
-            </div>
-            <div class="colunas">
-                <div class="icones-card">
-                    <img src="images/embryo-90.png">
-                </div>
-                <div class="icones-card">
-                    <img src="images/estetoscopio-90.png">
-                </div>
-                <div class="icones-card">
-                    <img src="images/baby-100.png">
-                </div>
-            </div>
+        <div class="card">
+            <h3>{{ $users }}</h3>
+            <h4>Usuários</h4>
         </div>
     </div>
-    <div class="rodape">
-        <div>
-            <p>© 2021 Curso DSM Fatec-Araras/SP</p>
+
+    <div style="display: grid; justify-content: center; align-items: center;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Crm</th>
+                    <th scope="col">Entrada</th>
+                    <th scope="col">Saída</th>
+                    <th scope="col">Especialidade</th>
+                    <th scope="col">Ativo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($doctor_all as $doctor)
+                    <tr>
+                        <th scope="row"><img src="{{ $doctor->img_doctor }}" width="50" height="50"></th>
+                        <td>{{ $doctor->name }}</td>
+                        <td>{{ $doctor->crm }}</td>
+                        <td>{{ $doctor->start_time }}</td>
+                        <td>{{ $doctor->end_time }}</td>
+                        <td>{{ $doctor->specialty }}</td>
+                        <td>
+                            @if ($doctor->active == 1)
+                                <a style="text-decoration: none;"
+                                    href="{{ route('doctor.active', [$doctor->id, $doctor->active]) }}">
+                                    <button type="button" class="btn btn-dark">
+                                        Desativar
+                                    </button>
+
+                                </a>
+                            @else
+                                <a style="text-decoration: none;"
+                                    href="{{ route('doctor.active', [$doctor->id, $doctor->active]) }}">
+                                    <button type="button" class="btn btn-dark">
+                                        Ativar
+                                    </button>
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div style="text-align: center">
+            {!! $doctor_all->links() !!}
         </div>
     </div>
-</body>
+@stop
 
-</html>
+@section('footer')
+    @parent
+@stop

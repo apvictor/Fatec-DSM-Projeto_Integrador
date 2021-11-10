@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>{{unidade.unit}}</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
@@ -32,22 +32,55 @@
           <b>Funciona das {{unidade.start_time}} às {{unidade.end_time}}</b>
         </p>
       </div>
+
+      <div class="card-info">
+        <div style="text-align: justify; margin: 0 20px;" class="card-info-text">
+          <p>Arraste para o lado para ver os Profissionais que atuam nesta unidade.</p>
+        </div>
+      </div>
+
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let doc of doctor">
+          <div class="card">
+            <span *ngIf="doc.active == 1" class="icon-online"></span>
+            <div class="img">
+              <div *ngIf="!doc.img_doctor">
+                <img src="../../assets/user.jpg" height="80px">
+              </div>
+              <img src="{{doc.img_doctor}}" height="80px">
+            </div>
+
+            <div class="text">
+              <div class="online">
+                <div *ngIf="doc.sex == 'M'">
+                  <h3 class="ion-text-wrap">
+                    <span style="font-size: 16px;">Dr.</span>
+                    {{doc.name}}
+                  </h3>
+                </div>
+                <div *ngIf="doc.sex == 'F'">
+                  <h3 class="ion-text-wrap">
+                    <span style="font-size: 16px;">Dra.</span>
+                    {{doc.name}}
+                  </h3>
+                </div>
+              </div>
+              <div class="specialty">
+                <p>{{doc.specialty}} <br> CRM: {{doc.crm}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-slide>
+      </ion-slides>
     </ion-card-header>
     <ion-card-content>
-      <div *ngIf="unidade.phone == ''">
-        
-      </div>
       <a style="text-align: center; text-decoration: none;" href="tel:{{unidade.phone}}">
-        <ion-button expand="block">
+        <ion-button style="margin: 0 10px;" expand="block">
           <ion-icon style="margin-right: 10px;" slot="icon-only" name="call"></ion-icon>
           Ligar agora
         </ion-button>
       </a>
-
     </ion-card-content>
   </ion-card>
-
-
-
 
 </ion-content>

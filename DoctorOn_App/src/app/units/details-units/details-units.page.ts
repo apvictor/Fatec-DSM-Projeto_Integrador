@@ -12,7 +12,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 export class DetailsUnitsPage implements OnInit {
 
   public id: any;
+
   public unidade: any = [];
+  public doctor: any = [];
 
   map: google.maps.Map;
   minhaPosicao: google.maps.LatLng;
@@ -32,9 +34,12 @@ export class DetailsUnitsPage implements OnInit {
 
   async ngOnInit() {
     this.id = this.activateRoute.snapshot.paramMap.get('id');
+    this.buscarMinhaPosicao();
     this.authService.unitsDetails(this.id).subscribe(
       (units) => {
-        this.unidade = units;
+        this.unidade = units['units'];
+        this.doctor = units['doctor'];
+        console.log(this.doctor);
         this.exibirMapa();
         this.tracarRota(this.unidade.unit);
       }
@@ -53,11 +58,13 @@ export class DetailsUnitsPage implements OnInit {
   }
 
   async buscarMinhaPosicao() {
-    this.geolacation.getCurrentPosition()
-      .then((resp) => {
-        this.minhaPosicao = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-        this.irParaMinhaPosicao();
-      })
+    this.geolacation.getCurrentPosition({
+      timeout: 10000,
+      enableHighAccuracy: true
+    }).then((resp) => {
+      this.minhaPosicao = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+      this.irParaMinhaPosicao();
+    })
       .catch((error) => {
         console.log('Erro', error);
       })
@@ -69,8 +76,7 @@ export class DetailsUnitsPage implements OnInit {
   }
 
 
-  public tracarRota(unidadePosicao) {
-
+  async tracarRota(unidadePosicao) {
     new google.maps.Geocoder().
       geocode({ address: unidadePosicao },
         resultado => {
@@ -92,5 +98,10 @@ export class DetailsUnitsPage implements OnInit {
 
         });
   }
+
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
 }

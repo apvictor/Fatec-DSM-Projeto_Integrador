@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +9,16 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   private url = environment.api;
-  private token = localStorage.getItem('token');
 
-  constructor(public http: HttpClient) { }
+  token = '';
+
+  constructor(public http: HttpClient) {
+    this.token = localStorage.getItem('token');
+
+    if (this.token != '') {
+      localStorage.clear();
+    }
+  }
 
   login(user: any): Observable<any> {
     return this.http.post(`${this.url}/login`, user);
@@ -19,6 +26,10 @@ export class AuthService {
 
   register(user: any): Observable<any> {
     return this.http.post(`${this.url}/register`, user);
+  }
+
+  forgotPassword(dados: any) {
+    return this.http.post(`${this.url}/reset`, dados);
   }
 
   logout(): Observable<any> {
@@ -46,8 +57,14 @@ export class AuthService {
     return this.http.get(`${this.url}/units/` + id, { headers });
   }
 
-  specialties(): Observable<any> {
-    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
+  specialties(token): Observable<any> {
+    if (this.token != '') {
+      localStorage.clear();
+      this.token = token;
+    } else {
+      this.token = token;
+    }
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + token });
     return this.http.get(`${this.url}/specialties`, { headers });
   }
 
@@ -56,9 +73,6 @@ export class AuthService {
     return this.http.get(`${this.url}/doctors/` + specialty, { headers });
   }
 
-  forgotPassword(email: string) {
-    return this.http.post(`${this.url}/reset/`, email);
-  }
 
 
 

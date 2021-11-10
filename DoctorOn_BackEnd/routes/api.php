@@ -10,7 +10,6 @@ use App\Http\Controllers\UserController;
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'authenticate']);
-
 Route::post('reset', [ForgotPasswordController::class, 'forgotReset']);
 
 
@@ -20,16 +19,12 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('profile', [UserController::class, 'profile']);
     Route::post('profile/update/{user}',  [UserController::class, 'update']);
 
-
     // Units
     Route::get('units', [UnitsController::class, 'index']);
-
     Route::get('units/{id}', [UnitsController::class, 'show']);
 
-
     // Doctor
-    Route::get('doctors/', [DoctorController::class, 'searchDoctor']);
-
+    Route::get('doctors/{specialty}', [DoctorController::class, 'searchDoctor']);
 
     // specialties
     Route::get('specialties', [SpecialtyController::class, 'index']);

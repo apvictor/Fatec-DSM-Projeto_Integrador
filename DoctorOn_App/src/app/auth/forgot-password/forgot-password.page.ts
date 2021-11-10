@@ -21,6 +21,7 @@ export class ForgotPasswordPage implements OnInit {
 
   form = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+    password: new FormControl('', Validators.compose([Validators.required])),
   });
 
 
@@ -30,7 +31,7 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   async forgotPassword() {
-    const loading = await this.loadingCtrl.create({ message: 'Enviando...' });
+    const loading = await this.loadingCtrl.create({ message: 'Redefinindo...' });
     await loading.present();
 
     this.authService.forgotPassword(this.form.value).subscribe(
@@ -38,7 +39,7 @@ export class ForgotPasswordPage implements OnInit {
         loading.dismiss();
         const alert = await this.alertCtrl.create({
           header: 'Senha redefinida',
-          message: 'Verifique a caixa de entrada do seu email',
+          message: 'Senha alterada com sucesso!',
           buttons: [{
             text: 'OK',
             handler: () => { this.router.navigateByUrl('/login'); }
@@ -49,7 +50,7 @@ export class ForgotPasswordPage implements OnInit {
       },
       async error => {
         const alert = await this.alertCtrl.create({
-          header: 'Falha ao enviar email',
+          header: 'Falha ao redefinir senha',
           message: error.error.msg,
           buttons: ['OK']
         });

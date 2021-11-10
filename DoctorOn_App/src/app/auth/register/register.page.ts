@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
@@ -11,6 +11,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterPage {
 
+  login = {
+    email: '',
+    password: ''
+  }
+
   constructor(
     private authService: AuthService,
     private loadingCtrl: LoadingController,
@@ -19,12 +24,10 @@ export class RegisterPage {
     private router: Router,
   ) { }
 
-
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   register = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
   async doRegister() {
@@ -35,8 +38,15 @@ export class RegisterPage {
       async success => {
         const toast = await this.toastCtrl.create({ message: 'Usuário criado', duration: 2000, color: 'dark' });
         await toast.present();
+        this.login.email = this.register.value.email;
+        this.login.password = this.register.value.password;
         loading.dismiss();
-        this.router.navigateByUrl('/login');
+        const loadingLogin = await this.loadingCtrl.create({ message: 'Entrando...' });
+        await loadingLogin.present();
+        this.authService.login(this.login).subscribe(() => {
+          loadingLogin.dismiss();
+          this.router.navigateByUrl('/home');
+        });
         console.log(success);
       },
       async error => {
