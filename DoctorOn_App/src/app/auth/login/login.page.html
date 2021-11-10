@@ -4,26 +4,40 @@
 <ion-content>
   <!-- LOGO -->
   <div class="logo">
-    <ion-img src="https://ik.imagekit.io/mnbr5uwksus/DoctorOn/DoctorOn.png?updatedAt=1634255509856"></ion-img>
+    
+    <img src="../../assets/logo-nova-fonte-png.png">
+   <!-- <ion-img src="../../assets/logo-nova-fonte-png"></ion-img> -->
   </div>
-  <h1 style="text-align: center;">Entrar</h1>
+
 
   <!-- INPUTS -->
   <form [formGroup]='login' (submit)="doLogin()">
     <ion-item>
-      <ion-label position="stacked">E-mail</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
+      <ion-label position="stacked">
+        <div class="text">E-mail</div>
+      </ion-label>
+      <ion-input type="email" formControlName="email">
+        <div class="email">E-mail</div>
+      </ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Senha</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
-    </ion-item>
-
-    <!-- ESQUECI SENHA -->
-    <div class="password" [routerLink]="['/forgot-password']">
-      <span>Esqueci minha senha</span>
+    <div class="inputs">
+      <ion-item>
+        <ion-label position="stacked">
+          <div class="text">Senha</div>
+        </ion-label>
+        <ion-input formControlName="password" type="password">
+          <div class="senha">Senha</div>
+        </ion-input>
+      </ion-item>
     </div>
 
+    <!-- ESQUECI SENHA -->
+    <div class="esqueci">
+      <div class="password" [routerLink]="['/forgot-password']">
+
+        <span>Esqueci minha senha</span>
+      </div>
+    </div>
     <!-- BOTÕES -->
     <div class="buttons">
       <ion-button type="submit" class="entrar" expand="block" [disabled]='login.invalid'>

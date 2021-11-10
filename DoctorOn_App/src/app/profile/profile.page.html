@@ -12,16 +12,16 @@
 </ion-header>
 
 <ion-content>
-
+  <div class="alinha">
   <ion-card class="img-user">
     <img src="../../assets/user.jpg" />
   </ion-card>
-
   <div class="edit-user">
     <h2>{{user.name}}</h2>
     <ion-button (click)="chooseEdit()" slot="end" color="dark">
       <ion-icon slot="icon-only" [name]="lock"></ion-icon>
     </ion-button>
+  </div>
   </div>
 
   <div class="forms">
@@ -50,7 +50,7 @@
         <ion-col>
           <span class="footer-container opacity" [routerLink]="['/units']">
             <div class="footer-img">
-              <img src="../../assets/pointer-30.png">
+              <img src="../../assets/unidades.png">
             </div>
             <div>
               <p class="footer-titulo">Unidades</p>
@@ -60,7 +60,7 @@
         <ion-col>
           <span class="footer-container opacity" [routerLink]="['/home']">
             <div class="footer-img">
-              <img src="../../assets/casa-30.png">
+              <img src="../../assets/home.png">
             </div>
             <div>
               <p class="footer-titulo">Home</p>
@@ -70,7 +70,7 @@
         <ion-col>
           <span class="footer-container" [routerLink]="['/profile']">
             <div class="footer-img">
-              <img src="../../assets/user-30.png">
+              <img src="../../assets/user.png">
             </div>
             <div>
               <p class="footer-titulo">Perfil</p>

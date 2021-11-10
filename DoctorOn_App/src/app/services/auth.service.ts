@@ -53,7 +53,7 @@ export class AuthService {
 
   doctors(specialty: string) {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
-    return this.http.get(`${this.url}/doctors/?specialty=` + specialty, { headers });
+    return this.http.get(`${this.url}/doctors/` + specialty, { headers });
   }
 
   forgotPassword(email: string) {
