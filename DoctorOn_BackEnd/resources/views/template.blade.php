@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <div class="colunas">
                         <div style="display: flex;">
-                            <img src="images/LOGO.svg" style="margin: 10px">
+                            <img src="images/LOGO.svg" style="margin: 20px">
                             @if (Auth::user()->type == 2)
                                 <p style="position: absolute; top: 35px; left: 10%; color: white;">
                                     {{ Auth::user()->name }}
@@ -47,8 +47,11 @@
                             <div class="items dropdown">
                                 <a data-toggle="dropdown">LISTAS</a>
                                 <ul class="dropdown-menu">
-                                    <li> <a href="{{ route('doctor.index') }}">MÉDICOS</a></li>
-                                    <li><a href="#">ESPECIALIDADES</a></li>
+                                    <li> <a href="{{ route('doctor.list.index') }}">MÉDICOS</a></li>
+                                    <li><a href="#">USUÁRIOS</a></li>
+                                    @if (Auth::user()->type == 2)
+                                        <li> <a href="">ESPECIALIDADES</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="items">

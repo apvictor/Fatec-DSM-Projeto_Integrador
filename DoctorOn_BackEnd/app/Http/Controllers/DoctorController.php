@@ -130,4 +130,26 @@ class DoctorController extends Controller
 
         return redirect()->route('home.index');
     }
+
+    public function list()
+    {
+        $user = Auth::user();
+
+        $doctor_all = Doctor::join('specialties', 'doctors.specialties_id', '=', 'specialties.id')
+            ->where('units_id',  $user->units_id)
+            ->select('doctors.*', 'specialties.specialty')
+            ->latest("updated_at")
+            ->paginate(4);
+
+        return view('list_doctor', ['doctor_all' => $doctor_all]);
+    }
+
+    public function destroy($id)
+    {
+        $doctor = $this->repository->where('id', $id)->first();
+
+        $doctor->delete();
+
+        return redirect()->route('doctor.list.index');
+    }
 }

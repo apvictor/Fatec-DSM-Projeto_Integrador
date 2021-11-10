@@ -23,11 +23,13 @@ Route::middleware(['auth'])->group(function () {
     })->name('logout');
 
     Route::get('home', [HomeController::class, 'index'])->name('home.index');
-    
+
     Route::get('doctor/{id}/{ative}', [DoctorController::class, 'activeDoctor'])->name('doctor.active');
     Route::get('doctor', [DoctorController::class, 'index'])->name('doctor.index');
     Route::post('doctor', [DoctorController::class, 'store'])->name('doctor.store');
 
+    Route::get('list', [DoctorController::class, 'list'])->name('doctor.list.index');
+    Route::delete('list/{id}', [DoctorController::class, 'destroy'])->name('doctor.list.destroy');
 
     Route::get('specialty', [SpecialtyController::class, 'indexWEB'])->name('specialty.index');
     Route::post('specialty', [SpecialtyController::class, 'store'])->name('specialty.store');
