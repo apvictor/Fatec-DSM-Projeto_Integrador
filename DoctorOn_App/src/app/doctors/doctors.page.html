@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{specialty}}</ion-title>
+    <div *ngIf="!specialty">
+      <ion-title>Especialidade</ion-title>
+    </div>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>

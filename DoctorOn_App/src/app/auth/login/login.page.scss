@@ -1,127 +1,103 @@
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 ion-input {
-    position: static;
-    height: 48px;
-    left: 0px;
-    top: 31px;
+  position: static;
+  height: 48px;
+  left: 0px;
+  top: 31px;
 
-    background: #FFFFFF;
-    border: 2px solid #D9D9D9;
-    border-radius: 8px;
+  background: #FFFFFF;
+  border: 2px solid #D9D9D9;
+  border-radius: 8px;
 
-    /* Inside Auto Layout */
+  /* Inside Auto Layout */
 
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 8px 0px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 8px 0px;
 }
 
 .item-label-floating.sc-ion-input-md-h,
 .item-label-floating .sc-ion-input-md-h,
 .item-label-stacked.sc-ion-input-md-h,
 .item-label-stacked .sc-ion-input-md-h {
-    --padding-top: 8px;
-    --padding-bottom: 8px;
-    --padding-start: inherit;
-    font-size: 18px !important;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  --padding-start: inherit;
+  font-size: 18px !important;
 
 }
-
 
 .logo {
-    height: 30%;
+  height: 30%;
 }
 
-/*ion-button {
-    padding: 7px;
-    height: 70px;
-    margin-bottom: -5px;
-    font-weight: bold;
-    font-size: 16px;
-}*/
+ion-button {
+  padding: 7px;
+  height: 70px;
+  margin-bottom: -5px;
+  font-weight: bold;
+  font-size: 16px;
+}
 
 ion-img {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 ion-item {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .password {
-    margin-top: 7px;
-    margin-left: 55%;
-    margin-bottom: 20px;
+  margin-top: 7px;
+  margin-left: 55%;
+  margin-bottom: 20px;
 }
 
 .password span {
-    color: #78A55A;
+  color: #78A55A;
+}
+
+
+:root {
+  --ion-color-primary: #48742C;
 }
 
 .buttons .entrar {
-    /*
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 0px 16px;
-font-weight: bold;
-*/
-left: 8px;
-top: 483px;
-position: absolute;
-height: 40px;
-width: 96%;
-border-radius: 5px;
---ion-color-primary: #48742C;
---ion-color-primary-rgb: (72,116,44);
-   
-}
-:root{
-    --ion-color-primary: #48742C;
+  --ion-color-primary: #48742C;
+  font-weight: bold;
 }
 
 .buttons .cadastrar {
-/*display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 0px 16px;*/
-width: 96%;
-position: absolute;
-height: 40px;
-left: 8px;
-top: 538px;
-border: 2px solid #48742C;
-box-sizing: border-box;
---ion-color-primary: #48742C;
-border-radius: 5px;
-font-weight: bold;
-    
-}
-.email{
-    padding: 16px 0px 12px 16px;
-    opacity: 0.4;
-    font-size: 15px;
-}
-.text{
-    font-size: 20px;
-}
-.senha{
-    padding: 16px 0px 12px 16px;
-    opacity: 0.4;
-    font-size: 15px;
+  --ion-color-primary: #48742C;
+  font-weight: bold;
 }
 
-.inputs{
-    padding: 20px 0px 0px 0px;
-  }
 
-.esqueci{
-    padding: 0px 10px 0px 40px;
+.email {
+  padding: 16px 0px 12px 16px;
+  opacity: 0.4;
+  font-size: 15px;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.senha {
+  padding: 16px 0px 12px 16px;
+  opacity: 0.4;
+  font-size: 15px;
+}
+
+.inputs {
+  padding: 20px 0px 0px 0px;
+}
+
+.esqueci {
+  padding: 0px 10px 0px 40px;
 }

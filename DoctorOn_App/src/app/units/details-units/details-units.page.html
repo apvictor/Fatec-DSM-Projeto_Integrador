@@ -74,12 +74,14 @@
       </ion-slides>
     </ion-card-header>
     <ion-card-content>
-      <a style="text-align: center; text-decoration: none;" href="tel:{{unidade.phone}}">
-        <ion-button style="margin: 0 10px;" expand="block">
-          <ion-icon style="margin-right: 10px;" slot="icon-only" name="call"></ion-icon>
-          Ligar agora
-        </ion-button>
-      </a>
+      <div *ngIf="unidade.phone != null">
+        <a style="text-align: center; text-decoration: none;" href="tel:{{unidade.phone}}">
+          <ion-button style="margin: 0 10px;" expand="block">
+            <ion-icon style="margin-right: 10px;" slot="icon-only" name="call"></ion-icon>
+            Ligar agora
+          </ion-button>
+        </a>
+      </div>
     </ion-card-content>
   </ion-card>
 

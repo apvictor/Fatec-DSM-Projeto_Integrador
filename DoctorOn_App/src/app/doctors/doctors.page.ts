@@ -81,7 +81,7 @@ export class DoctorsPage implements OnInit {
         this.aux_unidade[i].km = parseFloat(this.km);
 
 
-        if (this.dataValue != 'all_specialties') {
+        if (this.dataValue != 'todos') {
           this.specialty = this.aux_unidade[i].specialty;
         } else {
           this.specialty = 'Todas Especialidades';

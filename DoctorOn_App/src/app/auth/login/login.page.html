@@ -4,35 +4,26 @@
 <ion-content>
   <!-- LOGO -->
   <div class="logo">
-    <img src="../../assets/logo-nova-fonte-png.png">
-   <!-- <ion-img src="../../assets/logo-nova-fonte-png"></ion-img> -->
+    <ion-img src="../../assets/LOGO.svg" style="padding: 50px;"></ion-img>
   </div>
+
+  <h1 style="text-align: center;">Login</h1>
 
   <!-- INPUTS -->
   <form [formGroup]='login' (submit)="doLogin()">
+
     <ion-item>
-      <ion-label position="stacked">
-        <div class="text">E-mail</div>
-      </ion-label>
-      <ion-input type="email" formControlName="email">
-        <div class="email">E-mail</div>
-      </ion-input>
+      <ion-label position="stacked">E-mail</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
-    <div class="inputs">
-      <ion-item>
-        <ion-label position="stacked">
-          <div class="text">Senha</div>
-        </ion-label>
-        <ion-input formControlName="password" type="password">
-          <div class="senha">Senha</div>
-        </ion-input>
-      </ion-item>
-    </div>
+    <ion-item>
+      <ion-label position="stacked">Senha</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
 
     <!-- ESQUECI SENHA -->
     <div class="esqueci">
       <div class="password" [routerLink]="['/forgot-password']">
-
         <span>Esqueci minha senha</span>
       </div>
     </div>
