@@ -4,7 +4,6 @@
 <!-- Logo -->
 <h1 align="center">
     <img src="https://ik.imagekit.io/mnbr5uwksus/DoctorOn/LOGO_j-IGD2aXNCE.svg?updatedAt=1636410321224" width="200px" />
-    
 </h1>
 
 Apresentação do Projeto
@@ -16,13 +15,25 @@ Diante de um acidente no seu dia a dia,
 podendo ser um corte, ou até mesmo uma analise periódica com um determinado especialista. Através do aplicativo, terei as informações dos médicos disponíveis nos hospitais mais próximo, também informações sobre as unidades mais próximas e quais médicos atuam em cada unidade, assim evitando a perda de tempo na procura de hospitais que não tenham médicos, ou que tenham médicos, mas que não atendam o meu caso.
 
 <p align="center">
+  <a href="#documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#como-usar">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#licença">Licença</a>
 </p>
 
+## Documentação
 
+Documentação do projeto:
+
+- <a href="Docs\Documento_RequisitosV1.pdf" target="_blank">v1</a>
+- <a href="Docs\Documento_RequisitosV2.pdf" target="_blank">v2</a>
+- <a href="Docs\Documento_RequisitosV3.pdf" target="_blank">v3</a>
+- [v2](https://ionicframework.com/)
+- [v4](https://angular.io/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [PHP](https://www.php.net/)
+- [Laravel](https://laravel.com/)
 ## Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
