@@ -39,6 +39,7 @@
                                 <a data-toggle="dropdown">CADASTROS</a>
                                 <ul class="dropdown-menu">
                                     <li> <a href="{{ route('doctor.index') }}">MÉDICOS</a></li>
+                                    <li> <a href="{{ route('user.index') }}">USUÁRIOS</a></li>
                                     @if (Auth::user()->type == 2)
                                         <li> <a href="{{ route('specialty.index') }}">ESPECIALIDADES</a></li>
                                     @endif
@@ -48,7 +49,7 @@
                                 <a data-toggle="dropdown">LISTAS</a>
                                 <ul class="dropdown-menu">
                                     <li> <a href="{{ route('doctor.list.index') }}">MÉDICOS</a></li>
-                                    <li><a href="#">USUÁRIOS</a></li>
+                                    <li><a href="{{ route('user.list.index') }}">USUÁRIOS</a></li>
                                     @if (Auth::user()->type == 2)
                                         <li> <a href="">ESPECIALIDADES</a></li>
                                     @endif

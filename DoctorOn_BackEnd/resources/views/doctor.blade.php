@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('css', 'doctor.css')
-@section('title', 'Médico')
+@section('title', 'Médicos')
 
 @section('sidebar')
     @parent

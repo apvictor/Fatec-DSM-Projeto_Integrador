@@ -26,14 +26,9 @@ podendo ser um corte, ou até mesmo uma analise periódica com um determinado es
 
 Documentação do projeto:
 
-- <a href="Docs\Documento_RequisitosV1.pdf" target="_blank">v1</a>
-- <a href="Docs\Documento_RequisitosV2.pdf" target="_blank">v2</a>
-- <a href="Docs\Documento_RequisitosV3.pdf" target="_blank">v3</a>
-- [v2](https://ionicframework.com/)
-- [v4](https://angular.io/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [PHP](https://www.php.net/)
-- [Laravel](https://laravel.com/)
+- <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Documenta%C3%A7%C3%A3o/Documento_RequisitosV1.pdf" target="_blank">v1</a>
+- <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Documenta%C3%A7%C3%A3o/Documento_RequisitosV1.pdf" target="_blank">v2</a>
+- <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Documenta%C3%A7%C3%A3o/Documento_RequisitosV1.pdf" target="_blank">v3</a>
 ## Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
