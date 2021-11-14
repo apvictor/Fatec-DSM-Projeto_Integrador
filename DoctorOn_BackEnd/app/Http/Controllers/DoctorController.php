@@ -152,4 +152,54 @@ class DoctorController extends Controller
 
         return redirect()->route('doctor.list.index');
     }
+
+    public function update($id, Request $request)
+    {
+        $data = $request->all();
+
+        $credentials = $request->only(
+            'name',
+            'crm',
+            'start_time',
+            'end_time',
+            'img_doctor',
+        );
+
+        //valid credential
+        $validator = Validator::make($credentials, [
+            'name' => 'required',
+            'crm' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'img_doctor' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('doctor.list.index')->with('msg', $validator->messages());
+        }
+
+        $doctor = $this->repository->where('id', $id)->first();
+
+        if ($request->hasFile('img_doctor') && $request->file('img_doctor')->isValid()) {
+            $ext = $request->img_doctor->extension();
+            if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
+                try {
+                    // SUBIR PARA SERVER AWS
+                    $name = Str::uuid() . '.' . $ext;
+                    $file = $request->file('img_doctor');
+                    Storage::disk('s3')->put($name, file_get_contents($file));
+                    $url = Storage::disk('s3')->url($name);
+                    $data['img_doctor'] = $url;
+                } catch (FileNotFoundException $e) {
+                    return redirect()->route('doctor.list.index')->with('msg', $e->getMessage());
+                }
+            } else {
+                return redirect()->route('doctor.list.index')->with('msg', 'Formato invalido!');
+            }
+        }
+
+        $doctor->update($data);
+
+        return redirect()->route('doctor.list.index')->with('msg', 'Médico alterado com sucesso!');
+    }
 }

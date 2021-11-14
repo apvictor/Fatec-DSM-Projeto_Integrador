@@ -1,0 +1,40 @@
+footer {
+    background-color: #065535;
+    text-align: center;
+    color: white;
+    position: relative;
+    bottom: 0;
+    padding: 2px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.btn {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+
+    .navbar-links {
+        display: block;
+    }
+
+    .navbar-links a {
+        color: black;
+    }
+
+    #sobre {
+        display: block;
+    }
+
+    .colunas {
+        display: block;
+    }
+
+    .footer {
+        display: block;
+    }
+}

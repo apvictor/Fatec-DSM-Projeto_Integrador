@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -6,7 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="css/@yield('css')">
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="shortcut icon" href="images/favicon.png" />
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,13 +61,17 @@
                                     @endif
                                 </ul>
                             </div>
-                            <div class="items">
-                                <a style="color: white; text-decoration: none;"
-                                    href="{{ route('contato.index') }}">CONTATO</a>
-                            </div>
-                            <div class="items">
-                                <a style="color: white; text-decoration: none;"
-                                    href="{{ route('sobre.index') }}">SOBRE</a>
+                            <div class="items dropdown">
+                                <a data-toggle="dropdown">SUPORTE</a>
+                                <ul class="dropdown-menu">
+                                    @if (Auth::user()->type == 1)
+                                        <li> <a href="{{ route('suporte.index') }}">PERGUNTA</a></li>
+                                    @endif
+                                    @if (Auth::user()->type == 2)
+                                        <li> <a href="{{ route('list.message.index') }}">LISTA</a></li>
+                                    @endif
+
+                                </ul>
                             </div>
                             <div class="items">
                                 <a style="color: white; text-decoration: none;" href="{{ route('logout') }}">LOGOUT</a>
@@ -83,7 +93,7 @@
     </div>
 
     @section('footer')
-        <footer style="padding: 10px">
+        <footer>
             <p>Todos os direitos reservados © Copyright 2021</p>
         </footer>
     @show

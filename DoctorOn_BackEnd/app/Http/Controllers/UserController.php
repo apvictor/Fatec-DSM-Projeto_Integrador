@@ -133,4 +133,31 @@ class UserController extends Controller
 
         return redirect()->route('user.list.index');
     }
+
+    public function updateWEB($id, Request $request)
+    {
+        $credentials = $request->only(
+            'name',
+            'email',
+        );
+
+        //valid credential
+        $validator = Validator::make($credentials, [
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('user.list.index')->with('msg', $validator->messages());
+        }
+
+        $user = $this->repository->where('id', $id)->first();
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('user.list.index')->with('msg', 'Usuário alterado com sucesso!');
+    }
 }

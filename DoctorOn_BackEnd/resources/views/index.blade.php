@@ -9,25 +9,24 @@
 
 @section('content')
 
-    <div style="display: flex; align-items: center; justify-content: center;">
-        <button style="width: 200px; margin: 0 20px 20px 20px; padding-bottom: 10px; text-align: center;" type="button"
-            class="btn btn-light">
-            <h3>{{ $doctor_active }}</h3>
-            <h4>Médicos Ativos</h4>
-        </button>
+    <div class="cards">
+        <a href="#">
+            <div type="button" class="btn btn-light card">
+                <h3>{{ $doctor_active }}</h3>
+                <h4>Médicos Ativos</h4>
+            </div>
+        </a>
         <a href="{{ route('doctor.list.index') }}">
-            <button style="width: 200px; margin: 0 20px 20px 20px; padding-bottom: 10px; text-align: center;" type="button"
-                class="btn btn-light">
+            <div class="btn btn-light card">
                 <h3>{{ $doctor_count }}</h3>
                 <h4>Médicos</h4>
-            </button>
+            </div>
         </a>
         <a href="{{ route('user.list.index') }}">
-            <button style="width: 200px; margin: 0 20px 20px 20px; padding-bottom: 10px; text-align: center;" type="button"
-                class="btn btn-light">
+            <div class="btn btn-light card">
                 <h3>{{ $users }}</h3>
                 <h4>Usuários</h4>
-            </button>
+            </div>
         </a>
     </div>
 

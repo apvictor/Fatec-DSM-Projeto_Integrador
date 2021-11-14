@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Doctor;
+use App\Message;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,13 +39,15 @@ class HomeController extends Controller
         ]);
     }
 
-    public function sobre()
+    public function suporte()
     {
-        return view('sobre');
-    }
-    public function contato()
-    {
-        return view('contato');
+        $user = Auth::user();
+        $messages = Message::select('*')->where('user_id', $user->id)->latest('updated_at')->get();
+
+        $answers = Answer::join('messages', 'messages.id', '=', 'answers.msg_id')
+            ->where('user_id', $user->id)->latest('updated_at')->select('answers.resp', 'messages.*')->get();
+
+        return view('suporte', compact('messages', 'answers'));
     }
 
     public function create()

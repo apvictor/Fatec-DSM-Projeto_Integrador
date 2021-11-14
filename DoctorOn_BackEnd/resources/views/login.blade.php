@@ -42,6 +42,11 @@
             <!-- Remind Passowrd -->
             <div id="formFooter">
                 <a class="underlineHover" href="{{ route('reset.index') }}">Esqueceu sua senha?</a>
+                <br>
+                ou
+                <br>
+                <a class="underlineHover" href="{{ route('register') }}">Cadastre-se</a>
+
             </div>
 
         </div>

@@ -1,0 +1,57 @@
+body {
+    background-color: #ebebeb;
+    font-size: 19px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: #065535;
+    height: 120px;
+    border-radius: 0;
+}
+
+.colunas {
+    display: flex;
+    justify-content: space-between;
+    background-color: #065535;
+    height: 120px;
+    line-height: 120px;
+    margin: -20px;
+}
+
+.items {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    margin: 0 15px;
+}
+
+.dropdown-menu {
+    top: 75px;
+}
+
+
+/* TEMPLATE */
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    border-bottom: 2px groove grey;
+}
+
+.form-row{
+    font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+
+    .navbar,
+    .footer {
+        width: 100%;
+    }
+}
