@@ -56,7 +56,7 @@ class DoctorController extends Controller
     {
         $specialty = $this->specialties->all();
         // Remover a Especialidade Todos
-        unset($specialty[7]);
+        unset($specialty[5]);
 
         return view('doctor', ['specialty' => $specialty]);
     }

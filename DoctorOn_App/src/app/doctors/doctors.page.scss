@@ -40,11 +40,25 @@ ion-header ion-title {
   margin-left: 10px;
   margin-right: 10px;
   text-align: center;
-  width: 90px;
+  width: 50px;
 }
 
-img {
-  border-radius: 50%;
+.round-container {
+  width: 4rem;
+  height: 4rem;
+  align-self: center;
+  border-radius: 100%;
+  margin: 0.3rem auto 0.5rem auto;
+  overflow: hidden;
+  position: relative;
+}
+.round-container img {
+  width: initial;
+  height: 100px;
+  max-width: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .km {

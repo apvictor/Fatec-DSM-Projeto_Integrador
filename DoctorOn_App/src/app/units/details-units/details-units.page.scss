@@ -58,14 +58,23 @@ ion-footer ion-toolbar {
   height: 125px;
 }
 
-.img {
-  display: grid;
-  width: 90px;
-  margin-right: 20px;
+.round-container {
+  width: 4rem;
+  height: 4rem;
+  align-self: center;
+  border-radius: 100%;
+  margin: 0.3rem auto 0.5rem auto;
+  overflow: hidden;
+  position: relative;
 }
 
-img {
-  border-radius: 80%;
+.round-container img {
+  width: initial;
+  height: 100px;
+  max-width: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 h2 {

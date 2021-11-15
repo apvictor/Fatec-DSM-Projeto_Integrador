@@ -16,11 +16,9 @@ ion-header ion-toolbar {
 
 .header-img img {
   position: absolute;
-  width: 140px;
-  height: 100.8px;
-  left: 15px;
-  top: -20px;
-  width: 100px;
+  left: -15px;
+  width: 180px;
+  top: -8px;
 }
 
 .header-titulo {
@@ -59,7 +57,7 @@ ion-header ion-toolbar {
 // FIM HEADER
 
 .main {
-  height: 50px;
+  height: 20px;
   text-align: center;
 }
 
@@ -169,4 +167,22 @@ ion-footer ion-toolbar {
 
 .opacity {
   opacity: 0.8;
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background: #EEEEEE;
+  border-radius: 5px;
+  margin: 0 20px 0 20px;
+}
+
+.card-info-icon {
+  width: 60px;
+  text-align: center;
+}
+
+.card-info-text {
+  width: 300px;
 }

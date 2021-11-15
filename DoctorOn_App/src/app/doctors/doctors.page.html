@@ -30,10 +30,12 @@
   <ion-list>
     <div class="card" *ngFor="let doctor of doctors">
       <div class="img">
-        <div *ngIf="!doctor.img_doctor">
-          <img src="../../assets/user.jpg" height="80px" alt="">
+        <div class="round-container" *ngIf="!doctor.img_doctor">
+          <img src="../../assets/user.jpg">
         </div>
-        <img src="{{doctor.img_doctor}}" height="80px" alt="">
+        <div class="round-container">
+          <img src="{{doctor.img_doctor}}">
+        </div>
         <div class="km">
           <ion-badge color="dark">{{doctor.km}} Km</ion-badge>
         </div>

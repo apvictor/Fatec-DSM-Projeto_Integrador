@@ -44,10 +44,12 @@
           <div class="card">
             <span *ngIf="doc.active == 1" class="icon-online"></span>
             <div class="img">
-              <div *ngIf="!doc.img_doctor">
+              <div class="round-container" *ngIf="!doc.img_doctor">
                 <img src="../../assets/user.jpg" height="80px">
               </div>
-              <img src="{{doc.img_doctor}}" height="80px">
+              <div class="round-container">
+                <img src="{{doc.img_doctor}}" height="80px">
+              </div>
             </div>
 
             <div class="text">

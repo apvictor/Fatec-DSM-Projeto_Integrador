@@ -22,7 +22,7 @@ class SpecialtyController extends Controller
 
     public function index()
     {
-        $specialty = Specialty::select('*')->orderBy('specialty', 'asc')->get();
+        $specialty = Specialty::select('*')->limit(6)->get();
 
         if (!isset($specialty)) {
             return response()->json(['error' => 'Especialista não encontrado na base de dados!'], 200);
