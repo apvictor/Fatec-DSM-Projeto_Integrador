@@ -30,6 +30,7 @@ Documentação do projeto:
 - <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Docs/Documento_RequisitosV1.pdf" target="_blank">v1</a>
 - <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Docs/Documento_RequisitosV2.pdf" target="_blank">v2</a>
 - <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Docs/Documento_RequisitosV3.pdf" target="_blank">v3</a>
+- <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Docs/Documento_RequisitosV4.pdf" target="_blank">v4</a>
 ## Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
