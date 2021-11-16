@@ -95,6 +95,8 @@ Para acessar o Painel de Controle da Aplicação: [WEB](https://doctor-on.heroku
 
 Para acessar o Aplicativo: [APP](DoctorOn_App/platforms/android/build/../app/build/outputs/apk/debug/app-debug.apk)
 
+<a href="DoctorOn_App/platforms/android/build/../app/build/outputs/apk/debug/app-debug.apk" download="DoctorOn">DoctorOn</a>
+
 ## Licença
 
 Este projeto está sob a licença do MIT. Consulte a [LICENÇA](https://github.com/DanielObara/NLW-1.0/blob/master/LICENSE) para obter detalhes.
