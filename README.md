@@ -19,6 +19,7 @@ podendo ser um corte, ou até mesmo uma analise periódica com um determinado es
   <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#como-usar">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#aplicação">Aplicação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#licença">Licença</a>
 </p>
 
@@ -87,6 +88,12 @@ $ npm install
 # Run
 $ ionic serve
 ```
+
+## Aplicação
+
+Para acessar o Painel de Controle da Aplicação: [WEB](https://doctor-on.herokuapp.com/)
+
+Para acessar o Aplicativo: [APP](DoctorOn_App/platforms/android/build/../app/build/outputs/apk/debug/app-debug.apk)
 
 ## Licença
 
