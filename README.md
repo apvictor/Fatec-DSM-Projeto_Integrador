@@ -93,9 +93,7 @@ $ ionic serve
 
 Para acessar o Painel de Controle da Aplicação: [WEB](https://doctor-on.herokuapp.com/)
 
-Para acessar o Aplicativo: [APP](DoctorOn_App/platforms/android/build/../app/build/outputs/apk/debug/app-debug.apk)
-
-<a href="DoctorOn_App/platforms/android/build/../app/build/outputs/apk/debug/app-debug.apk" download="DoctorOn">DoctorOn</a>
+Para fazer o download do Aplicativo: [APP](https://drive.google.com/file/d/1bMQuCyYgRqm_RUITh7b8P-3OYzTjnifg/view?usp=sharing)
 
 ## Licença
 
