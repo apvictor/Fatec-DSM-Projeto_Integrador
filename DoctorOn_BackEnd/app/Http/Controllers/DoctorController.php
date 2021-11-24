@@ -162,7 +162,6 @@ class DoctorController extends Controller
             'crm',
             'start_time',
             'end_time',
-            'img_doctor',
         );
 
         //valid credential
@@ -171,7 +170,6 @@ class DoctorController extends Controller
             'crm' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
-            'img_doctor' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -192,10 +190,14 @@ class DoctorController extends Controller
                     $data['img_doctor'] = $url;
                 } catch (FileNotFoundException $e) {
                     return redirect()->route('doctor.list.index')->with('msg', $e->getMessage());
+                    $data['img_doctor'] = $doctor->img_doctor;
                 }
             } else {
+                $data['img_doctor'] = $doctor->img_doctor;
                 return redirect()->route('doctor.list.index')->with('msg', 'Formato invalido!');
             }
+        } else {
+            $data['img_doctor'] = $doctor->img_doctor;
         }
 
         $doctor->update($data);

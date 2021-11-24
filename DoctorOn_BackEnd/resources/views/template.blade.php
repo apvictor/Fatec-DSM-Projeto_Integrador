@@ -93,7 +93,7 @@
     </div>
 
     @section('footer')
-        <footer>
+        <footer style="margin-top: 30px;" class="fixed-bottom">
             <p>Todos os direitos reservados © Copyright 2021</p>
         </footer>
     @show
