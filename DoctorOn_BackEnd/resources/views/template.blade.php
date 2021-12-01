@@ -39,42 +39,42 @@
                         </div>
                         <div style="display: flex">
                             <div class="items">
-                                <a style="color: white; text-decoration: none;" href="{{ route('home.index') }}">HOME</a>
+                                <a style="color: white; text-decoration: none;" href="{{ route('home.index') }}">Home</a>
                             </div>
                             <div class="items dropdown">
-                                <a data-toggle="dropdown">CADASTROS</a>
+                                <a data-toggle="dropdown">Cadastros</a>
                                 <ul class="dropdown-menu">
-                                    <li> <a href="{{ route('doctor.index') }}">MÉDICOS</a></li>
-                                    <li> <a href="{{ route('user.index') }}">USUÁRIOS</a></li>
+                                    <li> <a href="{{ route('doctor.index') }}">Médicos</a></li>
+                                    <li> <a href="{{ route('user.index') }}">Usuários</a></li>
                                     @if (Auth::user()->type == 2)
-                                        <li> <a href="{{ route('specialty.index') }}">ESPECIALIDADES</a></li>
+                                        <li> <a href="{{ route('specialty.index') }}">Especialidades</a></li>
                                     @endif
                                 </ul>
                             </div>
                             <div class="items dropdown">
-                                <a data-toggle="dropdown">LISTAS</a>
+                                <a data-toggle="dropdown">Listas</a>
                                 <ul class="dropdown-menu">
-                                    <li> <a href="{{ route('doctor.list.index') }}">MÉDICOS</a></li>
-                                    <li><a href="{{ route('user.list.index') }}">USUÁRIOS</a></li>
+                                    <li> <a href="{{ route('doctor.list.index') }}">Médicos</a></li>
+                                    <li><a href="{{ route('user.list.index') }}">Usuários</a></li>
                                     @if (Auth::user()->type == 2)
-                                        <li> <a href="">ESPECIALIDADES</a></li>
+                                        <li> <a href="">Especialidades</a></li>
                                     @endif
                                 </ul>
                             </div>
                             <div class="items dropdown">
-                                <a data-toggle="dropdown">SUPORTE</a>
+                                <a data-toggle="dropdown">Suporte</a>
                                 <ul class="dropdown-menu">
                                     @if (Auth::user()->type == 1)
-                                        <li> <a href="{{ route('suporte.index') }}">PERGUNTA</a></li>
+                                        <li> <a href="{{ route('suporte.index') }}">Pergunta</a></li>
                                     @endif
                                     @if (Auth::user()->type == 2)
-                                        <li> <a href="{{ route('list.message.index') }}">LISTA</a></li>
+                                        <li> <a href="{{ route('list.message.index') }}">Lista</a></li>
                                     @endif
 
                                 </ul>
                             </div>
                             <div class="items">
-                                <a style="color: white; text-decoration: none;" href="{{ route('logout') }}">LOGOUT</a>
+                                <a style="color: white; text-decoration: none;" href="{{ route('logout') }}">Sair</a>
                             </div>
                         </div>
                     </div>
@@ -92,11 +92,13 @@
         @yield('content')
     </div>
 
-    @section('footer')
-        <footer style="margin-top: 30px;" class="fixed-bottom">
-            <p>Todos os direitos reservados © Copyright 2021</p>
-        </footer>
-    @show
+    <footer style="margin-top: 30px;">
+        <p>Todos os direitos reservados © Copyright 2021</p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

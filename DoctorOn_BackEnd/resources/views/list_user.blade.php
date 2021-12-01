@@ -29,13 +29,15 @@
                             <button style="height: -webkit-fill-available;" class="btn btn-primary" data-toggle="modal"
                                 data-target="#edit{{ $users->id }}">Alterar</button>
                             <span style="margin: 2px"></span>
-                            <form action="{{ route('user.list.destroy', $users->id) }}" method="POST">
+                            <form action="{{ route('user.list.destroy', $users->id) }}" method="POST"
+                                style="display: inline">
                                 @method('DELETE')
                                 @csrf
                                 @if (Auth::user()->name == $users->name)
                                     <button type="submit" disabled class="btn btn-danger">Deletar</button>
                                 @else
-                                    <button type="submit" class="btn btn-danger">Deletar</button>
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja apagar?')">Deletar</button>
                                 @endif
                             </form>
                         </td>

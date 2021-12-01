@@ -12,7 +12,7 @@
     <h6 class="title">Lista de Médicos</h6>
 
     <div style="display: grid; justify-content: center; align-items: center;">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -26,19 +26,20 @@
             <tbody>
                 @foreach ($doctor_all as $doctor)
                     <tr>
-                        <th scope="row"><img src="{{ $doctor->img_doctor }}" width="50" height="50"></th>
+                        <th scope="row"><img src="{{ $doctor->img_doctor }}" style="width: 35px; height: 45;"></th>
                         <td>{{ $doctor->name }}</td>
                         <td>{{ $doctor->crm }}</td>
                         <td>{{ $doctor->start_time }}</td>
                         <td>{{ $doctor->end_time }}</td>
-                        <td style="display: flex;">
-                            <button style="height: -webkit-fill-available;" class="btn btn-primary" data-toggle="modal"
+                        <td>
+                            <button class="btn btn-primary" data-toggle="modal"
                                 data-target="#edit{{ $doctor->id }}">Alterar</button>
-                            <span style="margin: 2px"></span>
-                            <form action="{{ route('doctor.list.destroy', $doctor->id) }}" method="POST">
+                            <form action="{{ route('doctor.list.destroy', $doctor->id) }}" method="POST"
+                                style="display: inline">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="btn btn-danger">Deletar</button>
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Tem certeza que deseja apagar?')">Deletar</button>
                             </form>
                         </td>
                     </tr>
@@ -64,7 +65,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('doctor.list.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('doctor.list.update', $doctor->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">

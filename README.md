@@ -16,6 +16,7 @@ podendo ser um corte, ou até mesmo uma analise periódica com um determinado es
 
 <p align="center">
   <a href="#documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#apresentação">Apresentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#como-usar">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -32,6 +33,11 @@ Documentação do projeto:
 - <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Docs/Documento_RequisitosV3.pdf" target="_blank">v3</a>
 - <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Docs/Documento_RequisitosV4.pdf" target="_blank">v4</a>
 - <a href="https://github.com/Apvictor/Fatec-DSM-Projeto_Integrador/blob/main/Docs/Documento_RequisitosV5.pdf" target="_blank">v5</a>
+
+## Apresentação
+
+Para acessar a Apresentação use o [Apresentação](https://docs.google.com/presentation/d/1PD7VPqTs2p6u1FRaryAX88zlK5jm_xGw_ICOC_sCLSY/edit?usp=sharing).
+
 ## Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
