@@ -12,6 +12,7 @@
         "barryvdh/laravel-cors": "^1.0",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
+        "jeroennoten/laravel-adminlte": "*",
         "laravel/framework": "5.8.*",
         "laravel/passport": "7.5.1",
         "laravel/tinker": "^1.0",

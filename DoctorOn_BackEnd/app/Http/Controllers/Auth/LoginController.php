@@ -40,8 +40,8 @@ class LoginController extends Controller
 
         //valid credential
         $validator = Validator::make($credentials, [
-            'email' => 'required|email',
-            'password' => 'required|string|min:4|max:50'
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         //Send failed response if request is not valid
@@ -69,6 +69,7 @@ class LoginController extends Controller
         //Token created, return with success response and jwt token
         return response()->json([
             'success' => true,
+            'message' => 'Usuário logado com sucesso',
             'token' => $token,
             'user' => JWTAuth::user()
         ]);
